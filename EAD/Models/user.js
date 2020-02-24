@@ -47,7 +47,8 @@ function validateUser(user){
   const schema={
     name:Joi.string().required(),
     email:Joi.string().required().email(),
-    password:Joi.string().required(),
+    password:Joi.string().regex(/^(?=.*[!@#$%^&*])/).min(8).required(),
+    contact:Joi.string().trim().regex(/^[0-9]{7,10}$/).length(10).required()
     // profilepic: Joi.string().required(),
     // profilepicparse: Joi.any()
   };

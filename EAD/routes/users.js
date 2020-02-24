@@ -186,11 +186,16 @@ res.send('Updated')
 //   res.send(arr);
 // })
 
-router.post('/',upload,async(req, res)=>{
+router.post('/',async(req, res)=>{
   // console.log(req.file);
   console.log(req.body);
   const {error} = validate(req.body);
-  if(error) return res.status (400).send(error.details[0].message);
+  if(error) {
+    const test="\"password\" with value "+"\""+req.body.password+"\""+" fails to match the required pattern: /^(?=.*[!@#$%^&*])/"
+    if(error.details[0].message==test)
+      return res.status (400).send("need a special character")
+    return res.status (400).send(error.details[0].message)
+  }
 
   let user =await User.findOne({email:req.body.email});
   if (user) return res.status(400).send('User already registered')
@@ -199,6 +204,7 @@ router.post('/',upload,async(req, res)=>{
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    contact:req.body.contact
     // profilepic: req.file.path
   });
   const salt=await bcrypt.genSalt(10);
