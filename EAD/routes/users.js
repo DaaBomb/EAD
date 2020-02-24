@@ -197,7 +197,7 @@ router.post('/',async(req, res)=>{
   if(error) {
     const test="\"password\" with value "+"\""+req.body.password+"\""+" fails to match the required pattern: /^(?=.*[!@#$%^&*])/"
     if(error.details[0].message==test)
-      return res.status (400).send("need a special character")
+      return res.status(400).send("need a special character")
     return res.status (400).send(error.details[0].message)
   }
 
@@ -263,6 +263,11 @@ router.post('/',async(req, res)=>{
 
 });
 
+router.post('/username',async(req,res)=>{
+  let user = await User.findOne({email:req.body.email})
+  if(user) return res.send("Valid username")
+  return res.status(400).send("Invalid username")
+});
 
 
 module.exports = router;
