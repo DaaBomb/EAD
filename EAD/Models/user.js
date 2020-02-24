@@ -32,6 +32,10 @@ address:{
   type:String,
   default:null
 },
+confirmed:{
+  type:Boolean,
+  default:false
+}
 // profilepic: {
 //     type: String,
 //     required: true,

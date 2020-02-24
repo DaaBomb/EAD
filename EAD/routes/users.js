@@ -9,6 +9,10 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer");
 const uuidv1=require('uuid/v1');
+const sendEmail = require('./email.send')
+const msgs = require('./email.msgs')
+const templates = require('./email.templates')
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "./uploads/");
@@ -188,7 +192,7 @@ res.send('Updated')
 
 router.post('/',async(req, res)=>{
   // console.log(req.file);
-  console.log(req.body);
+  // console.log(req.body);
   const {error} = validate(req.body);
   if(error) {
     const test="\"password\" with value "+"\""+req.body.password+"\""+" fails to match the required pattern: /^(?=.*[!@#$%^&*])/"
@@ -198,17 +202,48 @@ router.post('/',async(req, res)=>{
   }
 
   let user =await User.findOne({email:req.body.email});
-  if (user) return res.status(400).send('User already registered')
-
+  if (user && user.confirmed) return res.status(400).send('User already registered')
+  else if(user && !user.confirmed){
+     await sendEmail(req.body.email, templates.confirm(user._id))
+     return res.json({ msg: msgs.resend })
+    }
   user= new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    contact:req.body.contact
-    // profilepic: req.file.path
   });
   const salt=await bcrypt.genSalt(10);
   user.password=await bcrypt.hash(user.password,salt)
+  await user.save()
+  let tem = await User.findOne({email:req.body.email})
+  if(tem) await sendEmail(req.body.email, templates.confirm(tem._id))
+  else console.log("failed")
+
+  // User.findOne({ email })
+  //   .then(user => {
+  //
+  //     // We have a new user! Send them a confirmation email.
+  //     if (!user) {
+  //       User.create({ name,email,password })
+  //         .then(newUser => sendEmail(newUser.email, templates.confirm(newUser._id)))
+  //         .then(() => res.json({ msg: msgs.confirm }))
+  //         .catch(err => console.log(err))
+  //     }
+  //
+  //     // We have already seen this email address. But the user has not
+  //     // clicked on the confirmation link. Send another confirmation email.
+  //     else if (user && !user.confirmed) {
+  //       sendEmail(user.email, templates.confirm(user._id))
+  //         .then(() => res.json({ msg: msgs.resend }))
+  //     }
+  //
+  //     // The user has already confirmed this email address
+  //     else {
+  //       return res.status(400).send('User already registered')
+  //     }
+  //
+  //   })
+  //   .catch(err => console.log(err))
   /* can also be written as
   user= new User({
     name: req.body.name,
@@ -217,7 +252,6 @@ router.post('/',async(req, res)=>{
   });
   */
 
-  await user.save()
   const token=user.generateAuthToken();
 
   userDetails={
