@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey":"soad_jwtPrivateKey",
+  "mongoURI":"mongodb+srv://yashwanth:EADpassword123@ead-is4po.mongodb.net/test?retryWrites=true&w=majority"
+}
