@@ -69,10 +69,10 @@ router.get('/all',async(req,res)=>{
 })
 
 
-router.get('/:id',async(req,res)=>{
-  const user = await User.findById(req.params.id)
-  res.send(user);
-})
+// router.get('/:id',async(req,res)=>{
+//   const user = await User.findById(req.params.id)
+//   res.send(user);
+// })
 
 // router.get('/mybookings/:id',async(req, res)=>{
 //   const order = await Order.find({user_id:req.params.id,is_confirmed:true})
@@ -269,5 +269,12 @@ router.post('/username',async(req,res)=>{
   return res.status(400).send("Invalid username")
 });
 
+router.get('/:id',async(req,res)=>{
+  const user = await User.findById(req.params.id)
+  if(!user) return res.status(400).send("no user")
+  user.confirmed=true
+  await user.save()
+  return res.send(user.confirmed)
+});
 
 module.exports = router;
