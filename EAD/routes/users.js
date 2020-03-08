@@ -193,6 +193,7 @@ res.send('Updated')
 router.post('/',async(req, res)=>{
   // console.log(req.file);
   // console.log(req.body);
+  console.log("entered");
   const {error} = validate(req.body);
   if(error) {
     const test="\"password\" with value "+"\""+req.body.password+"\""+" fails to match the required pattern: /^(?=.*[!@#$%^&*])/"
@@ -259,7 +260,7 @@ router.post('/',async(req, res)=>{
     token:token
   }
 
-  res.send(userDetails)
+  res.send("successful")
 
 });
 

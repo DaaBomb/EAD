@@ -41,7 +41,7 @@ app
 
 //routes
 app.use('/api/users', require('./routes/users'));
-app.use('/api/profile', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 
 app.post('/uploadImages', parser.array('image'), (req, res, next) => {
   // req.files will show you the uploaded files

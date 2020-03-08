@@ -9,22 +9,23 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/',async(req, res)=>{
+  console.log('coming');
   const {error} = validate(req.body);
-  if(error) return res.status (400).send(error.details[0].message);
+  if(error) return res.send(error.details[0].message);
 
   let user =await User.findOne({email:req.body.email});
-  if (!user) return res.status(400).send('Invalid email or password')
+  if (!user) return res.send('Invalid email or password')
 
 const validPassword=  await bcrypt.compare(req.body.password,user.password);
-if (!validPassword) return res.status(400).send('Invalid email or password')
+if (!validPassword) return res.send('Invalid email or password')
+
+if(!user.confirmed) return res.send('Please click on the link sent to to your email account')
 
 const token=user.generateAuthToken();
-
-userDetails={
-  user:user,
-  token:token
-}
-res.send(userDetails)
+const userDetails={user:user,
+                  token:token
+                  }
+res.send("login successful")
 });
 
 
