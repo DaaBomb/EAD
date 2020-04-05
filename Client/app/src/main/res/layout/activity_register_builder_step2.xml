@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterBuilderStep2"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/txt_community_rules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Community Rules here(upto 10 rules)"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_rule9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter rule"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/btn_add_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="#431F63"
+        android:text="Add rule"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#431F63"
+        android:text="Continue"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+
+</LinearLayout>

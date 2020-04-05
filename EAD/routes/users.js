@@ -198,15 +198,15 @@ router.post('/',async(req, res)=>{
   if(error) {
     const test="\"password\" with value "+"\""+req.body.password+"\""+" fails to match the required pattern: /^(?=.*[!@#$%^&*])/"
     if(error.details[0].message==test)
-      return res.status(400).send("need a special character")
-    return res.status (400).send(error.details[0].message)
+      return res.send({msg:"need a special character"})
+    return res.send(error.details[0].message)
   }
 
   let user =await User.findOne({email:req.body.email});
-  if (user && user.confirmed) return res.status(400).send('User already registered')
+  if (user && user.confirmed) return res.send({msg:'User already registered'})
   else if(user && !user.confirmed){
      await sendEmail(req.body.email, templates.confirm(user._id))
-     return res.json({ msg: msgs.resend })
+     return res.send({msg:msgs.resend})
     }
   user= new User({
     name: req.body.name,
@@ -256,26 +256,27 @@ router.post('/',async(req, res)=>{
   const token=user.generateAuthToken();
 
   userDetails={
+    msg:"successful",
     user:user,
     token:token
   }
 
-  res.send("successful")
+  res.send(userDetails)
 
 });
 
 router.post('/username',async(req,res)=>{
   let user = await User.findOne({email:req.body.email})
   if(user) return res.send("Valid username")
-  return res.status(400).send("Invalid username")
+  return res.send("Invalid username")
 });
 
 router.get('/:id',async(req,res)=>{
   const user = await User.findById(req.params.id)
-  if(!user) return res.status(400).send("no user")
+  if(!user) return res.send("no user")
   user.confirmed=true
   await user.save()
-  return res.send(user.confirmed)
+  return res.send("verified. You can now login")
 });
 
 module.exports = router;

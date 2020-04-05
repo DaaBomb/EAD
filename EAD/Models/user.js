@@ -16,26 +16,32 @@ password:{
   type:String,
   required:true,
 },
-isAdmin:{
+isResident:{
   type:Boolean,
   default:false
 },
-about:{
+profession:{
   type:String,
-  default:'Nothing to show.Update your profile.'
-},
-contact:{
-  type:Number,
   default:null
 },
 address:{
-  type:String,
-  default:null
+  society_id:{
+    type:String,
+    default:null
+  },
+  blockname:{
+    type:String,
+    default:null,
+  },
+  flatnum:{
+    type:String,
+    default:null,
+  },
 },
 confirmed:{
   type:Boolean,
-  default:false
-}
+  default:false,
+},
 // profilepic: {
 //     type: String,
 //     required: true,

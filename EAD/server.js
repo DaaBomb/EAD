@@ -42,6 +42,8 @@ app
 //routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/society', require('./routes/society'));
+app.use('/api/forums', require('./routes/forums'));
 
 app.post('/uploadImages', parser.array('image'), (req, res, next) => {
   // req.files will show you the uploaded files
