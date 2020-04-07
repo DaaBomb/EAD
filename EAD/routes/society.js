@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-router.post('/',async(req, res)=>{
+
+
+router.post('/addbuilder',async(req, res)=>{
   const {error} = validate(req.body);
   if(error) return res.send({msg:error.details[0].message});
 
@@ -34,6 +36,9 @@ router.post('/',async(req, res)=>{
   res.send(societyDetails)
 });
 
+
+
+
 router.post('/flat',async(req,res)=>{
   const {error} = validateFlat(req.body);
   if(error) return res.send({msg:error.details[0].message});
@@ -56,7 +61,6 @@ router.post('/flat',async(req,res)=>{
               user:user,
             })
   }
-
   var index=arr.findIndex(k => k.name ==req.body.blockname)
   if(!arr[index].flat_nums.find(k => k == req.body.flatnum)){
     arr[index].flat_nums.push(req.body.flatnum)
@@ -69,11 +73,49 @@ router.post('/flat',async(req,res)=>{
           })
 });
 
+
+
+
+router.post('/staff',async(req,res)=>{
+  const {error} = validateStaff(req.body);
+  if(error) return res.send({msg:error.details[0].message});
+
+  let society = await Society.findOne({name:req.body.name,city:req.body.city})
+  if(!society) return res.send({msg:"Society does not exist"})
+  let user=await User.findById(req.body.user._id)
+  user.address.society_id=society._id
+  user.isResident=false
+  user.profession=req.body.profession
+  await user.save()
+  return res.send({msg:"successful",
+            user:user
+          })
+});
+
+
+
+
+router.get('/blocks',async(req,res)=>{
+  const {error} = validateBlock(req.body);
+  if(error) return res.send({msg:error.details[0].message});
+
+  let society = await Society.findById(req.body.user.address.society_id)
+  if(!society) return res.send({msg:"Society not availabale"})
+
+  let blockDetails = society.block
+  return res.send({msg:"successful",blockDetails:blockDetails})
+})
+
+
+
+
 router.get('/cities',async(req,res)=>{
   Society.distinct('city',function(err,results){
     res.send({msg:"successful",cities:results})
   })
 })
+
+
 
 router.get('/societies',async(req,res)=>{
   Society.distinct('name',function(err,results){
@@ -81,8 +123,10 @@ router.get('/societies',async(req,res)=>{
   })
 })
 
+
+
 router.get('/socitiesbycity',async(req,res)=>{
-  let result= await Society.find({city:req.body.city}).select('name -_id')
+  let result= await Society.find({city:req.query.city}).select('name -_id')
   res.send({msg:"successful",societies:result})
 })
 
@@ -108,6 +152,22 @@ function validateFlat(req){
   return Joi.validate(req ,schema)
 }
 
+function validateStaff(req){
+  const schema={
+    name:Joi.string().required(),
+    city:Joi.string().required(),
+    user:Joi.object().required(),
+    profession:Joi.string().required(),
+  };
+  return Joi.validate(req ,schema)
+}
+
+function validateBlock(req){
+  const schema={
+      user:Joi.object().required(),
+  };
+  return Joi.validate(req, schema)
+}
 
 
 module.exports = router;

@@ -1,73 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     android:weightSum="4"
     tools:context=".MainActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="200dp"
+        >
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/bee" />
+
             <TextView
-                android:id="@+id/txt_create_account"
-                android:text="+ CREATE ACCOUNT"
-                android:textStyle="bold"
-                android:layout_margin="16dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
+                android:text="Swarm"
+
+                android:textColor="#000000"
+                android:textSize="35dp"
+                android:layout_gravity="bottom"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/din_next_rounded_lt_pro_bold"
+                />
         </FrameLayout>
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@android:color/white"
-        android:layout_margin="16dp"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edt_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/karla"
+            android:textStyle="normal"
+            android:layout_gravity="center_horizontal"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:met_textColorHint="@color/myTextColor"
             app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="10dp"
+            app:met_iconLeft="@drawable/email"
             app:met_primaryColor="@color/myTextColor"
-            app:met_iconPadding="0dp"
-            app:met_iconRight="@drawable/ic_email"
-            />
+            app:met_textColorHint="@color/myTextColor" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edt_password"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:met_textColorHint="@color/myTextColor"
             app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="10dp"
+            app:met_iconLeft="@drawable/lock"
             app:met_primaryColor="@color/myTextColor"
-            app:met_iconPadding="0dp"
-            app:met_iconRight="@drawable/ic_lock"
-            />
+            app:met_textColorHint="@color/myTextColor" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_margin="16dp"
-        android:background="#431F63"
-        android:text="LOGIN"
+        android:background="@drawable/rounded_button"
+        android:text="Login"
         android:textSize="20sp"
+        android:fontFamily="@font/karla"
+        android:layout_gravity="center_horizontal"
         android:textColor="@android:color/white"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_width="120dp" />
 
-        />
+    <TextView
+        android:id="@+id/txt_create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/karla"
+        android:text="+ Create account"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

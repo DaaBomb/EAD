@@ -42,14 +42,14 @@ router.post('/addcomment',async(req,res)=>{
   })
   forum.comments=arr
   await forum.save()
-  return res.send({msg:"sucessful",forum:forum})
+  return res.send({msg:"successful",forum:forum})
 })
 
 function validate(req){
   const schema={
     topic:Joi.string().required(),
     is_discussion:Joi.boolean(),
-    user:Joi.object(),
+    user:Joi.object().required(),
     description:Joi.string(),
   };
   return Joi.validate(req ,schema)

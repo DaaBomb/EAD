@@ -253,12 +253,11 @@ router.post('/',async(req, res)=>{
   });
   */
 
-  const token=user.generateAuthToken();
+
 
   userDetails={
     msg:"successful",
-    user:user,
-    token:token
+    user:user
   }
 
   res.send(userDetails)

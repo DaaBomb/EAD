@@ -1,61 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edt_email"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorAccent"
+    android:weightSum="4">
+    <FrameLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        app:met_textColorHint="@color/myTextColor"
-        app:met_baseColor="@color/myTextColor"
-        app:met_primaryColor="@color/myTextColor"
-        app:met_iconPadding="0dp"
-        app:met_iconRight="@drawable/ic_email"
-        />
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edt_name"
-        android:hint="Name"
-        android:inputType="text"
-        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_height="107dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_gravity="top"
+            android:src="@drawable/swarmtop" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="444dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/karla"
+            android:gravity="center_horizontal"
+            android:padding="50dp"
+            android:text="Registration"
+            android:textColor="@color/myTextColor"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/karla"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_email"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/karla"
+            android:hint="Name"
+            android:inputType="text"
+            app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_email"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/karla"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:met_baseColor="@color/myTextColor"
+            app:met_iconPadding="0dp"
+            app:met_iconRight="@drawable/ic_lock"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/karla"
+                android:text="Register"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/txt_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/karla"
+                android:text="Login"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
         android:layout_width="match_parent"
-        app:met_textColorHint="@color/myTextColor"
-        app:met_baseColor="@color/myTextColor"
-        app:met_primaryColor="@color/myTextColor"
-        app:met_iconPadding="0dp"
-        app:met_iconRight="@drawable/ic_email"
-        />
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edt_password"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        app:met_textColorHint="@color/myTextColor"
-        app:met_baseColor="@color/myTextColor"
-        app:met_primaryColor="@color/myTextColor"
-        app:met_iconPadding="0dp"
-        app:met_iconRight="@drawable/ic_lock"
-        />
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_margin="16dp"
-        android:background="#431F63"
-        android:text="Register"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/txt_login"
-        android:text="Login  "
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+        android:layout_height="117dp"
+        android:layout_gravity="bottom">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/swarmbot"
+            android:layout_gravity="bottom"/>
+    </FrameLayout>
+
+
 </LinearLayout>

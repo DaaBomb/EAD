@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SelectCommunity"
     android:layout_height="match_parent"
-    tools:context=".ResidentRegister"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -13,10 +14,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter flat details"
+            android:text="Search for your community"
             android:fontFamily="@font/karla"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textColor="@color/colorAccent"
             android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
@@ -25,33 +26,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="336dp"
-        android:orientation="vertical"
-        android:padding="45dp">
+        android:layout_height="276dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edt_block_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+        <Button
+            android:id='@+id/btn_city'
+            android:layout_width='150dp'
+            android:layout_height='wrap_content'
+            android:layout_gravity="center_horizontal"
+            android:layout_margin='10dp'
+            android:background='@drawable/rounded_button_black'
             android:fontFamily="@font/karla"
-            android:hint="Enter block name" />
+            android:text='Select city'
+            android:textColor='@android:color/white'
+            android:textSize="20sp" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edt_flat_num"
-            android:layout_width="match_parent"
+        <Button
+            android:id='@+id/btn_community'
+            android:layout_width='200dp'
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin='10dp'
+            android:background='@drawable/rounded_button_black'
             android:fontFamily="@font/karla"
-            android:hint="Enter flat number" />
+            android:text='Select community'
+            android:textColor='@android:color/white'
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btn_continue"
             android:layout_width="120dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="45dp"
             android:background="@drawable/rounded_button"
+            android:layout_margin='40dp'
+
             android:text="Continue"
             android:textColor="@android:color/white"
             android:textSize="17sp" />
@@ -65,6 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="178dp"
             android:layout_gravity="bottom"
-            android:src="@drawable/swarmres" />
+            android:src="@drawable/swarmcomm" />
     </FrameLayout>
 </LinearLayout>

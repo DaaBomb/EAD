@@ -1,10 +1,19 @@
 package com.example.client.Retrofit;
 
 
+import com.example.client.dto.UserResidence;
+
+import org.json.JSONObject;
+
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface IMyService {
     @POST("api/users/")
@@ -18,5 +27,21 @@ public interface IMyService {
     Observable<String> loginUser(@Field("email") String email,
                                    @Field("password") String password);
 
+    @GET("api/society/cities/")
+    Observable<String> getCities();
 
+    @GET("api/society/societies/")
+    Observable<String> getSocieties();
+
+    @GET("api/society/socitiesbycity/")
+    Observable<String> changeSocieties( @Query("city") String city);
+
+    @POST("api/society/flat")
+    Observable<String> registerResident(@Body RequestBody user);
+
+    @POST("api/society/addbuilder")
+    Observable<String> addBuilder(@Body RequestBody builderSociety);
+
+    @POST("api/society/staff")
+    Observable<String> addStaff(@Body RequestBody staffSociety);
 }

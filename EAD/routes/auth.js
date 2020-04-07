@@ -19,15 +19,12 @@ router.post('/',async(req, res)=>{
 const validPassword=  await bcrypt.compare(req.body.password,user.password);
 if (!validPassword) return res.send({msg:'Invalid email or password'})
 
+user= await User.findOne({email:req.body.email}).select('-password');
 if(!user.confirmed) return res.send({msg:'Please click on the link sent to to your email account'})
 
-const token=user.generateAuthToken();
-const userDetails={user:user,
-                  token:token
-                  }
 res.send({msg:"login successful",
-          user:user,
-          token:token})
+          user:user
+        })
 });
 
 
