@@ -1,6 +1,7 @@
 package com.example.client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,6 +33,7 @@ public class RegisterBuilder extends AppCompatActivity {
     MaterialEditText edt_society_name;
     MaterialEditText edt_address;
     MaterialEditText edt_city;
+    SharedPreferences sharedPreferences;
 
     Gson gson = new Gson();
 
@@ -53,6 +55,7 @@ public class RegisterBuilder extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final User user = gson.fromJson(extras.getString("user"), User.class);
 
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
         edt_society_name = (MaterialEditText) findViewById(R.id.edt_aprt_name);
         edt_address = (MaterialEditText) findViewById(R.id.edt_aprt_address);
         edt_city = (MaterialEditText) findViewById(R.id.edt_aprt_city);
@@ -99,6 +102,7 @@ public class RegisterBuilder extends AppCompatActivity {
                         Toast.makeText(RegisterBuilder.this, "" + res.getMsg(), Toast.LENGTH_LONG).show();
                         if (res.getMsg().equals("successful")) {
                             Intent i = new Intent(RegisterBuilder.this, Leadpage.class);
+                            sharedPreferences.edit().putString("user", gson.toJson(res.getUser())).apply();
                             Bundle extras = new Bundle();
                             extras.putString("user", gson.toJson(res.getUser()));
                             i.putExtras(extras);

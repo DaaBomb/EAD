@@ -42,6 +42,10 @@ confirmed:{
   type:Boolean,
   default:false,
 },
+approved:{
+  type:Boolean,
+  default:false,
+},
 // profilepic: {
 //     type: String,
 //     required: true,

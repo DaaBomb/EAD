@@ -1,6 +1,7 @@
 package com.example.client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txt_create_account;
     MaterialEditText edt_Login_email, edt_Login_password;
     Button btn_login;
+    SharedPreferences sharedPreferences;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
@@ -40,12 +42,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
+
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
+        User user = gson.fromJson(sharedPreferences.getString("user","{}"), User.class);
+        if(sharedPreferences.getBoolean("isLoggedIn", false)) {
+            if(user.getApproved())
+                goToLeadPage();
+            else
+                goToHomePage();
+        }
 
         edt_Login_email = (MaterialEditText) findViewById(R.id.edt_email);
         edt_Login_password = (MaterialEditText) findViewById(R.id.edt_password);
@@ -100,14 +116,26 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, res.getMsg(), Toast.LENGTH_LONG).show();
                         if (res.getMsg().equals("login successful")) {
                             User user = res.getUser();
-                            Intent i = new Intent(MainActivity.this, HomepageActivity.class);
-                            i.putExtra("user", gson.toJson(user));
-                            startActivity(i);
+                            sharedPreferences.edit().putBoolean("isLoggedIn", true).apply();
+                            sharedPreferences.edit().putString("user", gson.toJson(user)).apply();
+                            if(user.getApproved())
+                                goToLeadPage();
+                            else
+                                goToHomePage();
                         }
 
                     }
                 })
         );
+    }
 
+    private void goToHomePage() {
+        Intent i = new Intent(MainActivity.this, HomepageActivity.class);
+        startActivity(i);
+    }
+
+    private void goToLeadPage() {
+        Intent i = new Intent(MainActivity.this, Leadpage.class);
+        startActivity(i);
     }
 }

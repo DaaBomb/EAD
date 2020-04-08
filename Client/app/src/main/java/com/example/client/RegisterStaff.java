@@ -1,6 +1,7 @@
 package com.example.client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +32,7 @@ public class RegisterStaff extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton radioButton;
     Button btn_continue;
-    int flag = 0;
-
+    SharedPreferences sharedPreferences;
     Gson gson = new Gson();
 
     @Override
@@ -48,6 +48,7 @@ public class RegisterStaff extends AppCompatActivity {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
 
         radioGroup = findViewById(R.id.radio_group);
         radioButton = findViewById(R.id.staff_man);
@@ -98,6 +99,7 @@ public class RegisterStaff extends AppCompatActivity {
                                 i = new Intent(RegisterStaff.this, SecurityPage.class);
                             }
                             Bundle extras = new Bundle();
+                            sharedPreferences.edit().putString("user", gson.toJson(res.getUser())).apply();
                             extras.putString("user", gson.toJson(res.getUser()));
                             i.putExtras(extras);
                             startActivity(i);

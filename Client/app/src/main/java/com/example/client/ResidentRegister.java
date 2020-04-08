@@ -3,6 +3,7 @@ package com.example.client;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ResidentRegister extends AppCompatActivity {
     MaterialEditText edt_flat_num;
     Button btn_continue;
     Gson gson = new Gson();
+    SharedPreferences sharedPreferences;
     @Override
     protected void onStop() {
         compositeDisposable.clear();
@@ -44,6 +46,8 @@ public class ResidentRegister extends AppCompatActivity {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
+
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
 
         edt_block_name=(MaterialEditText) findViewById(R.id.edt_block_name);
         edt_flat_num = (MaterialEditText) findViewById(R.id.edt_flat_num);
@@ -84,6 +88,7 @@ public class ResidentRegister extends AppCompatActivity {
                         Toast.makeText(ResidentRegister.this,""+ baseResponse.getMsg(),Toast.LENGTH_LONG).show();
                         if(baseResponse.getMsg().equals("successful"))
                         {
+                            sharedPreferences.edit().putString("user",  gson.toJson(baseResponse.getUser())).apply();
                             Intent i =new Intent(ResidentRegister.this,Leadpage.class);
                             Bundle extras = new Bundle();
                             extras.putString("user", gson.toJson(baseResponse.getUser()));

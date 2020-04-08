@@ -1,80 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SelectCommunity"
+    android:id="@+id/linearLayout6"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:background="@color/colorAccent"
+    tools:context=".SelectCommunity">
+
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorPrimary">
+        android:id="@+id/frameLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/btn_city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search for your community"
-            android:fontFamily="@font/karla"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:textColor="@color/colorAccent"
-            android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
-            />
+            android:fontFamily="@font/karla"
+            android:gravity="center_horizontal"
+            android:text="Search for your community"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
     </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="276dp"
-        android:layout_marginTop="60dp"
-        android:orientation="vertical">
 
-        <Button
-            android:id='@+id/btn_city'
-            android:layout_width='150dp'
-            android:layout_height='wrap_content'
-            android:layout_gravity="center_horizontal"
-            android:layout_margin='10dp'
-            android:background='@drawable/rounded_button_black'
-            android:fontFamily="@font/karla"
-            android:text='Select city'
-            android:textColor='@android:color/white'
-            android:textSize="20sp" />
+    <Button
+        android:id='@+id/btn_city'
+        android:layout_width="200dp"
+        android:layout_height='wrap_content'
+        android:layout_marginBottom="20dp"
+        android:background='@drawable/rounded_button_black'
+        android:fontFamily="@font/karla"
+        android:text='Select city'
+        android:textColor='@android:color/white'
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_community"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
 
-        <Button
-            android:id='@+id/btn_community'
-            android:layout_width='200dp'
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin='10dp'
-            android:background='@drawable/rounded_button_black'
-            android:fontFamily="@font/karla"
-            android:text='Select community'
-            android:textColor='@android:color/white'
-            android:textSize="20sp" />
+    <Button
+        android:id='@+id/btn_community'
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:background='@drawable/rounded_button_black'
+        android:fontFamily="@font/karla"
+        android:text='Select community'
+        android:textColor='@android:color/white'
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_city" />
 
-        <Button
-            android:id="@+id/btn_continue"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/rounded_button"
-            android:layout_margin='40dp'
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="50dp"
 
-            android:text="Continue"
-            android:textColor="@android:color/white"
-            android:textSize="17sp" />
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="176dp"
-        android:layout_gravity="bottom">
+        android:background="@drawable/rounded_button"
+        android:text="Continue"
+        android:textColor="@android:color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_community" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="178dp"
-            android:layout_gravity="bottom"
-            android:src="@drawable/swarmcomm" />
-    </FrameLayout>
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="177dp"
+        android:src="@drawable/swarmcomm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_continue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,21 @@
 package com.example.client;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.client.dto.User;
 import com.google.gson.Gson;
 
 public class HomepageActivity extends AppCompatActivity {
     Button btn_builder;
     Button btn_resident;
     Button btn_staff;
-
-    Gson gson = new Gson();
     Bundle extras = new Bundle();
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +25,9 @@ public class HomepageActivity extends AppCompatActivity {
         btn_resident = (Button) findViewById(R.id.btn_resident);
         btn_staff = (Button) findViewById(R.id.btn_staff);
 
-        Intent i = getIntent();
-        String jsonString = i.getStringExtra("user");
-        User user = gson.fromJson(jsonString, User.class);
-        extras.putString("user", gson.toJson(user));
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
+        String user = sharedPreferences.getString("user", "{}");
+        extras.putString("user", user);
 
         btn_builder.setOnClickListener(new View.OnClickListener() {
             @Override

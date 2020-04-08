@@ -8,11 +8,11 @@ public class User {
     private String _id;
     private String name;
     private String email;
-
+    private boolean approved;
     public User() {
     }
 
-    public User(UserAddress address, boolean isResident, String profession, boolean confirmed, String _id, String name, String email) {
+    public User(UserAddress address, boolean isResident, String profession, boolean confirmed, String _id, String name, String email, boolean approved) {
         this.address = address;
         this.isResident = isResident;
         this.profession = profession;
@@ -20,6 +20,16 @@ public class User {
         this._id = _id;
         this.name = name;
         this.email = email;
+        this.approved = approved;
+    }
+
+
+    public boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public UserAddress getAddress() {

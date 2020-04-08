@@ -44,4 +44,18 @@ public interface IMyService {
 
     @POST("api/society/staff")
     Observable<String> addStaff(@Body RequestBody staffSociety);
+
+    @GET("api/forums/getTopic/")
+    Observable<String> getTopics(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @GET("api/forums/getComplains/")
+    Observable<String> getComplains(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @POST("api/forums/addTopic")
+    Observable<String> addTopic(@Body RequestBody topicDescription);
+
+    @POST("api/forums/addcomment")
+    Observable<String> addcomment(@Body RequestBody commentUser);
+
+
 }

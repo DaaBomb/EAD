@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,94 +7,110 @@
     android:orientation="vertical"
     android:background="@color/colorAccent"
     android:weightSum="4"
-    tools:context=".MainActivity">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        >
+    tools:context=".MainActivity"
+    android:id="@+id/linearLayout2">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/bee" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView2"
+        android:layout_width="199dp"
+        android:layout_height="197dp"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:src="@drawable/bee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="150dp"
+        tools:layout_conversion_absoluteWidth="150dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Swarm"
-
-                android:textColor="#000000"
-                android:textSize="35dp"
-                android:layout_gravity="bottom"
-                android:gravity="center_horizontal"
-                android:fontFamily="@font/din_next_rounded_lt_pro_bold"
-                />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_marginBottom="36dp"
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edt_email"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/karla"
-            android:textStyle="normal"
-            android:layout_gravity="center_horizontal"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            app:met_baseColor="@color/myTextColor"
-            app:met_iconPadding="10dp"
-            app:met_iconLeft="@drawable/email"
-            app:met_primaryColor="@color/myTextColor"
-            app:met_textColorHint="@color/myTextColor" />
+        android:fontFamily="@font/din_next_rounded_lt_pro_bold"
+        android:gravity="center_horizontal"
+        android:text="Swarm"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/edt_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"
+        tools:layout_conversion_absoluteHeight="40dp"
+        tools:layout_conversion_absoluteWidth="393dp" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edt_password"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            app:met_baseColor="@color/myTextColor"
-            app:met_iconPadding="10dp"
-            app:met_iconLeft="@drawable/lock"
-            app:met_primaryColor="@color/myTextColor"
-            app:met_textColorHint="@color/myTextColor" />
-    </LinearLayout>
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_email"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:fontFamily="@font/karla"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/txt_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"
+        app:layout_constraintVertical_bias="0.448"
+        app:met_baseColor="@color/myTextColor"
+        app:met_primaryColor="@color/myTextColor"
+        app:met_textColorHint="@color/myTextColor"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="300dp" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edt_password"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/txt_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_email"
+        app:layout_constraintVertical_bias="0.0"
+        app:met_baseColor="@color/myTextColor"
+        app:met_primaryColor="@color/myTextColor"
+        app:met_textColorHint="@color/myTextColor"
+        tools:layout_conversion_absoluteHeight="49dp"
+        tools:layout_conversion_absoluteWidth="300dp" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_margin="16dp"
+        android:layout_width="98dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button"
-        android:text="Login"
-        android:textSize="20sp"
         android:fontFamily="@font/karla"
-        android:layout_gravity="center_horizontal"
+        android:text="Login"
         android:textColor="@android:color/white"
-        android:layout_height="wrap_content"
-        android:layout_width="120dp" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="120dp" />
 
     <TextView
         android:id="@+id/txt_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="76dp"
         android:fontFamily="@font/karla"
         android:text="+ Create account"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_conversion_absoluteHeight="19dp"
+        tools:layout_conversion_absoluteWidth="113dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

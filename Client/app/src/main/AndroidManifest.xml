@@ -14,7 +14,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ResidentRegister"/>
+        <activity android:name=".IndividualTopic"></activity>
+        <activity android:name=".ForumPage" />
+        <activity android:name=".ResidentRegister" />
         <activity android:name=".Leadpage" />
         <activity android:name=".RegisterBuilderStep2" />
         <activity android:name=".RegisterBuilder" />
@@ -27,11 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.client.RegisterStaff" />
-        <activity android:name="com.example.client.SelectCommunity" />
-        <activity android:name="com.example.client.SecurityPage" />
-        <activity android:name="com.example.client.ManagerPage" />
-        <activity android:name="com.example.client.BuilderPage" />
+        <activity android:name=".RegisterStaff" />
+        <activity android:name=".SelectCommunity" />
+        <activity android:name=".SecurityPage" />
+        <activity android:name=".ManagerPage" />
+        <activity android:name=".BuilderPage" />
     </application>
 
 </manifest>
