@@ -5,15 +5,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/lock"
-            android:title="Home" />
+            android:icon="@drawable/ic_home_black_36dp"
+            android:title="Home"
+            />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/lock"
+            android:icon="@drawable/ic_account_circle_actualblack_36dp"
             android:title="Profile" />
     </group>
+
     <item
         android:id="@+id/nav_logout"
-        android:icon="@drawable/lock"
-        android:title="Logout" />
+        android:icon="@drawable/ic_power_settings_new_black_36dp"
+        android:title="Logout"
+        />
 </menu>

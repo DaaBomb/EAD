@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout4"
+    android:background="#f9f9f9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
     tools:context=".RegisterBuilder">
 
 
@@ -64,7 +64,7 @@
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
         android:fontFamily="@font/karla"
-        android:hint="Apartment name"
+        android:hint="Address"
 
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/edt_aprt_city"

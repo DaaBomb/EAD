@@ -5,23 +5,32 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#EF930C</item>
         <item name="colorPrimaryDark">#D87216</item>
-        <item name="colorAccent">#f9f9f9</item>
+        <item name="colorAccent">#000000</item>
         <item name="android:windowFullscreen">false</item>
         <item name="textAllCaps">false</item>
 
     </style>
-
+    <style name="nocap" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">18dp</item>
+        <item name="fontFamily">@font/karla</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
-
+    <style name="orangetext">
+        <item name="android:textColor">#EF930C</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Divider">
 
-    <item name="android:layout_width">match_parent</item>
-
-    <item name="android:layout_height">3dp</item>
+    <item name="android:layout_width">380dp</item>
+    <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+    <item name="android:layout_height">1dp</item>
 
     <item name="android:background">?android:attr/listDivider</item>
 

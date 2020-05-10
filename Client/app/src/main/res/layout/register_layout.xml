@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="#f9f9f9"
     android:orientation="vertical"
     android:weightSum="4">
 
@@ -99,7 +99,7 @@
         android:fontFamily="@font/karla"
         android:text="Register"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="18dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
