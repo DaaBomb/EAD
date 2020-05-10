@@ -25,12 +25,10 @@
 
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/txt_house_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:textStyle="normal"
-        android:fontFamily="@font/karla"
-        android:text="Address" />
+        android:fontFamily="@font/karla" />
 </LinearLayout>

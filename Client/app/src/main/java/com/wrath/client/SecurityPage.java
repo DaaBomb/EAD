@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.wrath.client.Retrofit.IMyService;
@@ -28,7 +30,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
-public class SecurityPage extends AppCompatActivity {
+public class SecurityPage extends BaseNav {
 
     MaterialEditText visitor_name;
     MaterialEditText purpose;
@@ -48,7 +50,7 @@ public class SecurityPage extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security_page);
 
@@ -63,21 +65,11 @@ public class SecurityPage extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
         user = gson.fromJson(sharedPreferences.getString("user", "{}"), User.class);
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-//        View headerLayout =
-//                navigationView.inflateHeaderView(R.layout.nav_header);
-//        username = (TextView) headerLayout.findViewById(R.id.txt_username);
-//        username.setText(user.getName());
-//        username.setVisibility(View.VISIBLE);
-//        houseDetails = (TextView) headerLayout.findViewById(R.id.txt_house_details);
-//        if (user.getAddress().getBlockname() != null && user.getAddress().getFlatnum() != null)
-//        {
-//            houseDetails.setText(user.getAddress().getBlockname() + "-" + user.getAddress().getFlatnum());
-//            houseDetails.setVisibility(View.VISIBLE);
-//        }
-//        else
-//            houseDetails.setText("");
+
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+        setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
+        setNavigationView((NavigationView) findViewById(R.id.nav_view));
+        initialize();
 
 
         approval.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +99,6 @@ public class SecurityPage extends AppCompatActivity {
             }
         });
 
-//        navigationView.setNavigationItemSelectedListener(this);
     }
 
     public void gateRegister(SecurityRequest securityRequest){

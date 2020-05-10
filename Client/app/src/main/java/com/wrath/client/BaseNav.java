@@ -28,34 +28,25 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
 
     SharedPreferences sharedPreferences;
     String user;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
     BroadcastReceiver broadcastReceiver;
     AlertDialog.Builder builder;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+    Toolbar toolbar;
+    NavigationView navigationView;
     TextView username;
-    TextView houseDetails;
+    TextView house_details;
+    User userObj;
     Gson gson = new Gson();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sidenav);
-
-//        builder = new AlertDialog.Builder(this);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Home");
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
         user = sharedPreferences.getString("user", "{}");
-        User userObj = gson.fromJson(user, User.class);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        userObj = gson.fromJson(user, User.class);
 
-        navigationView.setNavigationItemSelectedListener(this);
+        builder = new AlertDialog.Builder(this);
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -65,6 +56,38 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         };
 
         displayAlertDialog(getIntent());
+    }
+
+    public void setDrawerLayout(DrawerLayout drawerLayout) {
+        this.drawerLayout = drawerLayout;
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
+
+    public void setNavigationView(NavigationView navigationView) {
+        this.navigationView = navigationView;
+    }
+
+    public void initialize() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home");
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        initializeNavBar();
+    }
+
+    public void initializeNavBar() {
+        View headerLayout = navigationView.getHeaderView(0);
+        username = (TextView) headerLayout.findViewById(R.id.txt_username);
+        house_details = (TextView) headerLayout.findViewById(R.id.txt_house_details);
+        username.setText(userObj.getName());
+        house_details.setText(userObj.getAddress().getBlockname() + "-" + userObj.getAddress().getFlatnum());
+        if (userObj.getAddress().getBlockname() == null)
+            house_details.setVisibility(View.GONE);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -87,20 +110,19 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_logout:
                 sharedPreferences.edit().clear().apply();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
                 return false;
         }
     }
 
-    public void displayAlertDialog(Intent intent) {
+    private void displayAlertDialog(Intent intent) {
         Bundle extras = intent.getExtras();
         if (extras != null && extras.getString("title") != null && extras.getString("message") != null) {
             String title = extras.getString("title");
@@ -109,7 +131,6 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                     .setPositiveButton("Approve", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
                     })
                     .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
@@ -119,6 +140,5 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                     })
                     .create().show();
         }
-
     }
 }

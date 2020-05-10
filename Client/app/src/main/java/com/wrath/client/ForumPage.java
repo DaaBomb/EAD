@@ -1,6 +1,5 @@
 package com.wrath.client;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -21,16 +19,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
 import com.wrath.client.dto.TopicDescription;
 import com.wrath.client.dto.User;
-import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
-public class ForumPage extends AppCompatActivity {
+public class ForumPage extends BaseNav {
 
     private Toolbar forum_toolbar;
     private ViewPager viewPager;
@@ -69,7 +68,7 @@ public class ForumPage extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_page);
 
@@ -79,14 +78,10 @@ public class ForumPage extends AppCompatActivity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
 
-        forum_toolbar = (Toolbar) findViewById(R.id.forum_toolbar);
-        setSupportActionBar(forum_toolbar);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.nav_open,R.string.nav_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
+        setToolbar((Toolbar) findViewById(R.id.forum_toolbar));
+        setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
+        setNavigationView((NavigationView) findViewById(R.id.nav_view));
+        initialize();
         btn_add_topic = findViewById(R.id.fab);
         btn_add_topic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +150,6 @@ public class ForumPage extends AppCompatActivity {
         public void addFragment(Fragment fragment, String title) {
             fragments.add(fragment);
             fragmentTitles.add(title);
-
         }
 
         @NonNull

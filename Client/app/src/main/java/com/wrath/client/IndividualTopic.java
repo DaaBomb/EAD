@@ -1,14 +1,5 @@
 package com.wrath.client;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,8 +8,21 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
@@ -26,14 +30,9 @@ import com.wrath.client.dto.Comment;
 import com.wrath.client.dto.CommentUser;
 import com.wrath.client.dto.Topic;
 import com.wrath.client.dto.User;
-import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -44,7 +43,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
-public class IndividualTopic extends AppCompatActivity {
+public class IndividualTopic extends BaseNav {
     private DrawerLayout drawer;
     TextView txt_description;
     DrawerLayout drawerLayout;
@@ -57,26 +56,21 @@ public class IndividualTopic extends AppCompatActivity {
     IMyService iMyService;
     User user;
     Topic topic;
+
     @Override
     protected void onStop() {
         compositeDisposable.clear();
         super.onStop();
     }
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_topic);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Details");
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.nav_open,R.string.nav_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
+        setToolbar((Toolbar) findViewById(R.id.toolbar));
+        setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
+        setNavigationView((NavigationView) findViewById(R.id.nav_view));
+        initialize();
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
         txt_topic = (TextView) findViewById(R.id.textView);
@@ -93,33 +87,20 @@ public class IndividualTopic extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(topic.getDate_created());
         txt_date.setText(date);
-
         FloatingActionButton fab;
         fab = findViewById(R.id.floatingActionButton);
-
         ArrayList<Model> list = new ArrayList<>();
-
-//        list.add(new Model(Model.IMAGE_TYPE, "Hi. Commenttsss.", "John Doe", R.drawable.ic_account_circle_black_24dp));
-//        list.add(new Model(Model.IMAGE_TYPE, "Hi. Commenttsss.", "John Doe", R.drawable.ic_account_circle_black_24dp));
-//        list.add(new Model(Model.IMAGE_TYPE, "Hi. Commenttsss.", "John Doe", R.drawable.ic_account_circle_black_24dp));
-//        list.add(new Model(Model.IMAGE_TYPE, "Hi. Commenttsss.", "John Doe", R.drawable.ic_account_circle_black_24dp));
-//        list.add(new Model(Model.IMAGE_TYPE, "Hi. Commenttsss.", "John Doe", R.drawable.ic_account_circle_black_24dp));
-
-        List<Comment>comments = topic.getComments();
-        for(Comment comment: comments){
+        List<Comment> comments = topic.getComments();
+        for (Comment comment : comments) {
             String date1 = simpleDateFormat.format(comment.getDate_created());
-            list.add(new Model(Model.IMAGE_TYPE, comment.getComment(),date1, comment.getPerson_name(), R.drawable.ic_account_circle_black_24dp));
+            list.add(new Model(Model.IMAGE_TYPE, comment.getComment(), date1, comment.getPerson_name(), R.drawable.ic_account_circle_black_24dp));
         }
-
         MultiViewTypeAdapter adapter = new MultiViewTypeAdapter(list, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
-
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,16 +128,14 @@ public class IndividualTopic extends AppCompatActivity {
                                     Toast.makeText(IndividualTopic.this, "Topic cannot be empty", Toast.LENGTH_LONG).show();
                                     return;
                                 }
-                                addComment(add_comment.getText().toString(),topic.get_id());
+                                addComment(add_comment.getText().toString(), topic.get_id());
                             }
                         }).show();
             }
         });
-
-
     }
 
-    public void addComment(String comment, String topic_id){
+    public void addComment(String comment, String topic_id) {
         CommentUser commentUser = new CommentUser();
         commentUser.setComment(comment);
         commentUser.setTopic_id(topic_id);
@@ -169,9 +148,9 @@ public class IndividualTopic extends AppCompatActivity {
                     @Override
                     public void accept(String response) throws Exception {
                         BaseResponse res = gson.fromJson(response, BaseResponse.class);
-                        Intent i = new Intent(IndividualTopic.this,ForumPage.class);
+                        Intent i = new Intent(IndividualTopic.this, ForumPage.class);
                         Bundle extras = new Bundle();
-                        extras.putString("user",gson.toJson(user));
+                        extras.putString("user", gson.toJson(user));
                         i.putExtras(extras);
                         Toast.makeText(IndividualTopic.this, res.getMsg(), Toast.LENGTH_LONG).show();
                         startActivity(i);
