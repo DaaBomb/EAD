@@ -108,9 +108,9 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        else{
-            finish();
-        }
+//        else{
+//            finish();
+//        }
     }
 
     @Override
