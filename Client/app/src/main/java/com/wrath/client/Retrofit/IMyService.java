@@ -60,5 +60,8 @@ public interface IMyService {
     @POST("api/gateregister/")
     Observable<String> sendnotification(@Body RequestBody securityRequest);
 
+    @POST("api/gateregister/permission")
+    Observable<String> sendPermission(@Body RequestBody permissionRequest);
+
 
 }

@@ -10,7 +10,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
@@ -19,12 +18,20 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
+import com.wrath.client.dto.NotificationDetails;
+import com.wrath.client.dto.User;
 
 import java.util.Random;
 
+
 public class FirebaseMessageReceiver extends FirebaseMessagingService {
 
+    Gson gson = new Gson();
+    String user;
+    User userObj;
     SharedPreferences sharedPreferences;
+
     @Override
     public void onNewToken(@NonNull String s) {
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
@@ -34,13 +41,28 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //handle when receive notification via data event
+        sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
+        user = sharedPreferences.getString("user", "{}");
+        userObj = gson.fromJson(user, User.class);
+        String messageString = remoteMessage.getData().get("message");
+        NotificationDetails notificationDetails = gson.fromJson(messageString, NotificationDetails.class);
         if (remoteMessage.getData().size() > 0) {
-            showNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
+            if (    remoteMessage.getData().get("title").equals("Security approval") &&
+                    notificationDetails.getSociety_id().equals(userObj.getAddress().getSociety_id()) &&
+                    notificationDetails.getBlock_visiting().equals(userObj.getAddress().getBlockname()) &&
+                    notificationDetails.getFlatnum_visiting().equals(userObj.getAddress().getFlatnum()))
+                    showNotification(remoteMessage.getData().get("title"), notificationDetails.getVisitor_name() + " is requesting your approval" +" ("+ notificationDetails.getBlock_visiting() +"-"+notificationDetails.getFlatnum_visiting()+")",notificationDetails);
+            else if(remoteMessage.getData().get("title").equals("Resident approval") &&
+                    notificationDetails.getSociety_id().equals(userObj.getAddress().getSociety_id()) &&
+                    userObj.getProfession()!=null &&
+                    userObj.getProfession().equals("security")
+            )
+                showNotification(remoteMessage.getData().get("title"),notificationDetails.getVisitor_name() + (notificationDetails.getConfirmed()?" is allowed to go inside":" is not allowed to go inside"),notificationDetails);
         }
 
         //handle when receive notification
         if (remoteMessage.getNotification() != null) {
-            showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(),notificationDetails);
         }
     }
 
@@ -52,7 +74,7 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
         return remoteViews;
     }
 
-    public void showNotification(String title, String message) {
+    public void showNotification(String title, String message, NotificationDetails notificationDetails) {
         Intent intent = new Intent(this, MainActivity.class);
         String channel_id = "swarm_channel";
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -61,6 +83,7 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
         Bundle extras = new Bundle();
         extras.putString("title", title);
         extras.putString("message", message);
+        extras.putString("notificationDetails", gson.toJson(notificationDetails));
         intent.putExtras(extras);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, new Random().nextInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
