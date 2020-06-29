@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="300dp"
         android:orientation="vertical">
 
 
@@ -20,45 +20,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/karla"
             android:padding="5dp"
             android:text="Visitor Name"
             android:textSize="16dp"
-            card_view:layout_constraintEnd_toStartOf="@+id/visitor_name2"
-            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-        <TextView
-            android:id="@+id/visitor_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="148dp"
-            android:layout_marginRight="148dp"
-            android:fontFamily="@font/karla"
-            android:padding="5dp"
-            android:text="Status"
-            android:textColor="@color/myTextColor"
-            android:textSize="16dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-        <TextView
-            android:id="@+id/visitor_name3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="128dp"
-            android:fontFamily="@font/karla"
-            android:padding="5dp"
-            android:text="Approved"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16dp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/visitor_name2" />
+            card_view:layout_constraintTop_toBottomOf="@+id/blockname" />
 
         <TextView
             android:id="@+id/purpose"
@@ -70,10 +38,36 @@
             android:padding="5dp"
             android:text="Purpose"
             android:textSize="16dp"
-            card_view:layout_constraintEnd_toStartOf="@+id/visitor_name3"
-            card_view:layout_constraintHorizontal_bias="0.314"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.121"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/visitor_name" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity=""
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginRight="96dp"
+            android:background="@drawable/ic_cancel_black_24dp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity=""
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:background="@drawable/ic_check_circle_black_24dp"
+            card_view:layout_constraintEnd_toStartOf="@+id/button"
+            card_view:layout_constraintHorizontal_bias="0.99"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
             android:id="@+id/flatnumber"
@@ -113,11 +107,11 @@
             android:id="@+id/divider2"
             android:layout_width="350dp"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:background="@color/colorPrimary"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/blockname" />
+            card_view:layout_constraintTop_toBottomOf="@+id/purpose" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
