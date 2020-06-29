@@ -22,7 +22,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
-<!--        <Button-->
+        <!--        <Button-->
 <!--            android:id="@+id/btn_forum"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
@@ -49,57 +49,125 @@
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toBottomOf="@+id/toolbar" />-->
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:background="#f9f9f9"
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-
-            <include layout="@layout/toolbar"
-                android:id="@+id/toolbar"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/edt_visitor_name"
-                android:hint="Enter visitor name"
-                />
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/edt_purpose"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="State the purpose"
-                />
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/edt_block_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Blockname" />
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/edt_flat_num"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter flat number"
-                />
-            <Button
-                android:id="@+id/btn_approval"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ask for approval"
-                />
-<!--            <com.google.android.material.navigation.NavigationView-->
+        <!--            <com.google.android.material.navigation.NavigationView-->
 <!--                android:id="@+id/nav_view"-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="match_parent"-->
 <!--                android:layout_gravity="start"-->
 <!--                app:headerLayout="@layout/nav_header"-->
 <!--                app:menu="@menu/drawer_menu" />-->
-        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:drawableLeft="@drawable/ic_security_black_36dp"
+            android:drawablePadding="15dp"
+            android:fontFamily="@font/karla"
+            android:text="Securtiy"
+            android:textColor="@color/myTextColor"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_visitor_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/karla"
+            android:hint="Enter visitor name"
+            android:paddingBottom="10dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_flat_num"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/karla"
+            android:hint="Enter flat number"
+            android:paddingBottom="10dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_block_name"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_purpose"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/karla"
+            android:hint="State the purpose"
+            android:paddingBottom="10dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_flat_num"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edt_block_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/karla"
+            android:hint="Blockname"
+            android:paddingBottom="10dp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_visitor_name"
+            app:met_baseColor="@color/myTextColor"
+            app:met_primaryColor="@color/myTextColor"
+            app:met_textColorHint="@color/myTextColor" />
+
+        <Button
+            android:id="@+id/btn_approval"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/rounded_button"
+            android:text="Ask for approval"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_purpose" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="412dp"
+            android:layout_height="170dp"
+            android:src="@drawable/swarmcop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_approval"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
