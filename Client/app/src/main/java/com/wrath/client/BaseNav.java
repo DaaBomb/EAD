@@ -47,6 +47,7 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
     String user;
     BroadcastReceiver broadcastReceiver;
     AlertDialog.Builder builder;
+    AlertDialog alertDialog;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -73,9 +74,7 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
         user = sharedPreferences.getString("user", "{}");
         userObj = gson.fromJson(user, User.class);
-
         builder = new AlertDialog.Builder(this);
-
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -160,20 +159,28 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
             String message = extras.getString("message");
             final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"),NotificationDetails.class);
             if(userObj.getProfession()==null) {
-                builder.setTitle(title).setMessage(message)
-                        .setPositiveButton("Approve", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                givePermission(notificationDetails.get_id(), true);
-                            }
-                        })
-                        .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                givePermission(notificationDetails.get_id(), false);
-                            }
-                        })
-                        .create().show();
+                final View customLayout = getLayoutInflater().inflate(R.layout.notification_dialog, null);
+                builder.setTitle(title).setView(customLayout);
+                TextView visitor_name = customLayout.findViewById(R.id.visitor_name);
+                TextView purpose = customLayout.findViewById(R.id.purpose);
+                visitor_name.setText(notificationDetails.getVisitor_name());
+                purpose.setText(notificationDetails.getPurpose());
+                customLayout.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        givePermission(notificationDetails.get_id(), true);
+                        alertDialog.dismiss();
+                    }
+                });
+                customLayout.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        givePermission(notificationDetails.get_id(), false);
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog= builder.create();
+                alertDialog.show();
 
             }
             else{

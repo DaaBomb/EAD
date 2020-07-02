@@ -89,9 +89,10 @@ public class SecurityPage extends BaseNav {
                 }
 
                 SecurityRequest securityRequest = new SecurityRequest();
-                securityRequest.setVisitor_name(visitor_name.getText().toString());
-                securityRequest.setBlockname(block_name.getText().toString());
-                securityRequest.setFlatnum(flat_num.getText().toString());
+                securityRequest.setVisitor_name(visitor_name.getText().toString().trim());
+                securityRequest.setBlockname(block_name.getText().toString().trim());
+                securityRequest.setFlatnum(flat_num.getText().toString().trim());
+                securityRequest.setPurpose(purpose.getText().toString().trim());
                 securityRequest.setToken(user.getToken());
                 securityRequest.setUser(user);
                 gateRegister(securityRequest);

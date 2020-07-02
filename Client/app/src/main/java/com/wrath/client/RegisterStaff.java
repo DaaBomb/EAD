@@ -94,7 +94,7 @@ public class RegisterStaff extends AppCompatActivity {
         StaffSociety staffSociety = new StaffSociety();
         staffSociety.setName(society_name);
         staffSociety.setProfession(staff_role.toLowerCase());
-        staffSociety.setCity(city);
+        staffSociety.setCity(city.trim());
         staffSociety.setUser(user);
         RequestBody request = RequestBody.create(MediaType.parse("application/json"), gson.toJson(staffSociety));
         compositeDisposable.add(iMyService.addStaff(request)
