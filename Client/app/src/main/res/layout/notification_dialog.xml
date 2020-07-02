@@ -18,7 +18,6 @@
             android:id="@+id/visitor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/karla"
@@ -68,41 +67,6 @@
             card_view:layout_constraintHorizontal_bias="0.99"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-        <TextView
-            android:id="@+id/flatnumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="112dp"
-            android:layout_marginRight="112dp"
-            android:fontFamily="@font/karla"
-            android:gravity="end"
-            android:padding="5dp"
-            android:text="Flat Number"
-            android:textColor="@color/myTextColor"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/blockname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/karla"
-            android:gravity="end"
-            android:padding="5dp"
-            android:text="Block Name"
-            android:textColor="@color/myTextColor"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            card_view:layout_constraintEnd_toStartOf="@+id/flatnumber"
-            card_view:layout_constraintHorizontal_bias="0.701"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
-
         <View
             android:id="@+id/divider2"
             android:layout_width="350dp"

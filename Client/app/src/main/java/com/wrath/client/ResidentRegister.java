@@ -61,8 +61,8 @@ public class ResidentRegister extends AppCompatActivity {
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String blockname = edt_block_name.getText().toString();
-                String flatnum = edt_flat_num.getText().toString();
+                String blockname = edt_block_name.getText().toString().trim();
+                String flatnum = edt_flat_num.getText().toString().trim();
                 if (TextUtils.isEmpty(blockname)) {
                     Toast.makeText(ResidentRegister.this, "Please enter block name to proceed", Toast.LENGTH_SHORT).show();
                     return;
@@ -73,10 +73,10 @@ public class ResidentRegister extends AppCompatActivity {
                 }
                 Bundle extras = getIntent().getExtras();
                 String jsonString = extras.getString("user");
-                String city = extras.getString("city");
-                String name = extras.getString("society_name");
+                String city = extras.getString("city").trim();
+                String name = extras.getString("society_name").trim();
                 User user = gson.fromJson(jsonString, User.class);
-                registerResident(user, name.trim(), city.trim(), blockname.trim(), flatnum.trim());
+                registerResident(user, name, city, blockname, flatnum);
             }
         });
 

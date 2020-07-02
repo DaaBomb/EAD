@@ -40,7 +40,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/karla"
         android:switchPadding="10dp"
-        android:text="Is this a mainenance issue"
+        android:text="Is this a maintenance issue"
         android:textSize="15dp"
         android:trackTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/add_topic"

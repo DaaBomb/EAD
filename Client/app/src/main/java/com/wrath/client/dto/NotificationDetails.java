@@ -6,14 +6,16 @@ public class NotificationDetails {
     private String flatnum_visiting;
     private String society_id;
     private Boolean confirmed;
+    private String purpose;
     private String _id;
 
-    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String _id) {
+    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id) {
         this.visitor_name = visitor_name;
         this.block_visiting = block_visiting;
         this.flatnum_visiting = flatnum_visiting;
         this.society_id = society_id;
         this.confirmed = confirmed;
+        this.purpose = purpose;
         this._id = _id;
     }
 
@@ -58,6 +60,14 @@ public class NotificationDetails {
 
     public void setConfirmed(Boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
     public String get_id() {

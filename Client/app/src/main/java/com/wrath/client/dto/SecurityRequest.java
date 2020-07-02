@@ -5,23 +5,17 @@ public class SecurityRequest {
     private String blockname;
     private String flatnum;
     private String token;
+    private String purpose;
     private User user;
 
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
+    public SecurityRequest(String visitor_name, String blockname, String flatnum, String token, String purpose, User user) {
+        this.visitor_name = visitor_name;
+        this.blockname = blockname;
+        this.flatnum = flatnum;
         this.token = token;
+        this.purpose = purpose;
+        this.user = user;
     }
 
     public SecurityRequest() {
@@ -49,5 +43,29 @@ public class SecurityRequest {
 
     public void setFlatnum(String flatnum) {
         this.flatnum = flatnum;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
