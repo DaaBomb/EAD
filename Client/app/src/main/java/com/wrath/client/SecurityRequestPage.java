@@ -9,17 +9,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.NotificationDetailsResponse;
+import com.wrath.client.dto.SecurityRequest;
 import com.wrath.client.dto.Topic;
 import com.wrath.client.dto.TopicsResponse;
 import com.wrath.client.dto.User;
@@ -39,7 +48,7 @@ public class SecurityRequestPage extends BaseNav {
     RecyclerView recyclerView;
     SecurityRecyclerViewAdapter recyclerViewAdapter;
     List<NotificationDetails> notificationDetailsList = new ArrayList<>();
-
+    FloatingActionButton btn_add_topic;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
 
@@ -64,7 +73,14 @@ public class SecurityRequestPage extends BaseNav {
         iMyService = retrofitClient.create(IMyService.class);
 //        View root = inflater.inflate(R.layout.fragment_discussion, container, false);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
+        btn_add_topic = findViewById(R.id.fab);
+        btn_add_topic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SecurityRequestPage.this, SecurityPage.class);
+                startActivity(i);
+            }
+        });
         populateData(userObj.getAddress().getSociety_id(), 1);
         initAdapter();
         initScrollListener();
@@ -104,7 +120,6 @@ public class SecurityRequestPage extends BaseNav {
                 super.onScrolled(recyclerView, dx, dy);
 
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
                 if (!isLoading) {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == notificationDetailsList.size() - 1) {
                         //bottom of list!
