@@ -6,21 +6,19 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
 import com.wrath.client.dto.SecurityRequest;
 import com.wrath.client.dto.User;
-import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -96,6 +94,8 @@ public class SecurityPage extends BaseNav {
                 securityRequest.setToken(user.getToken());
                 securityRequest.setUser(user);
                 gateRegister(securityRequest);
+                Intent i = new Intent(SecurityPage.this, SecurityRequestPage.class);
+                startActivity(i);
 
             }
         });
