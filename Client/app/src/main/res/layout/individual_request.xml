@@ -25,13 +25,13 @@
             android:padding="5dp"
             android:text="Visitor Name"
             android:textSize="16dp"
-            card_view:layout_constraintEnd_toStartOf="@+id/visitor_name2"
+            card_view:layout_constraintEnd_toStartOf="@+id/status_title"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
-            android:id="@+id/visitor_name2"
+            android:id="@+id/status_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -46,7 +46,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
-            android:id="@+id/visitor_name3"
+            android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -54,11 +54,11 @@
             android:layout_marginRight="128dp"
             android:fontFamily="@font/karla"
             android:padding="5dp"
-            android:text="Approved"
+            android:text="Pending..."
             android:textColor="@color/colorPrimary"
             android:textSize="16dp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/visitor_name2" />
+            card_view:layout_constraintTop_toBottomOf="@+id/status_title" />
 
         <TextView
             android:id="@+id/purpose"
@@ -70,7 +70,7 @@
             android:padding="5dp"
             android:text="Purpose"
             android:textSize="16dp"
-            card_view:layout_constraintEnd_toStartOf="@+id/visitor_name3"
+            card_view:layout_constraintEnd_toStartOf="@+id/status"
             card_view:layout_constraintHorizontal_bias="0.314"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/visitor_name" />

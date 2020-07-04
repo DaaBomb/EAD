@@ -1,5 +1,7 @@
 package com.wrath.client.dto;
 
+import java.util.Date;
+
 public class NotificationDetails {
     private String visitor_name;
     private String block_visiting;
@@ -8,8 +10,10 @@ public class NotificationDetails {
     private Boolean confirmed;
     private String purpose;
     private String _id;
+    private Boolean responded;
+    private Date date_created;
 
-    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id) {
+    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created) {
         this.visitor_name = visitor_name;
         this.block_visiting = block_visiting;
         this.flatnum_visiting = flatnum_visiting;
@@ -17,9 +21,27 @@ public class NotificationDetails {
         this.confirmed = confirmed;
         this.purpose = purpose;
         this._id = _id;
+        this.responded = responded;
+        this.date_created = date_created;
     }
 
     public NotificationDetails() {
+    }
+
+    public Boolean getResponded() {
+        return responded;
+    }
+
+    public void setResponded(Boolean responded) {
+        this.responded = responded;
+    }
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
     }
 
     public String getVisitor_name() {
