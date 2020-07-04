@@ -14,7 +14,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".BaseNav"></activity>
+        <activity android:name=".SecurityRequestPage"></activity>
+        <activity android:name=".SecurityRecyclerViewAdapter" />
+        <activity android:name=".BaseNav" />
         <activity android:name=".IndividualTopic" />
         <activity android:name=".ForumPage" />
         <activity android:name=".ResidentRegister" />

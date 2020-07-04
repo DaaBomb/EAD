@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToSecurityPage() {
-        Intent i = new Intent(MainActivity.this, SecurityPage.class);
+        Intent i = new Intent(MainActivity.this, SecurityRequestPage.class);
         if (getIntent() != null && getIntent().getExtras() != null)
             i.putExtras(getIntent().getExtras());
         startActivity(i);

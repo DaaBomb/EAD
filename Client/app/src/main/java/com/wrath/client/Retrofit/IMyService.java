@@ -63,5 +63,8 @@ public interface IMyService {
     @POST("api/gateregister/permission")
     Observable<String> sendPermission(@Body RequestBody permissionRequest);
 
+    @GET("api/gateregister/getRequests/")
+    Observable<String> getSecurityRequests(@Query("society_id") String society_id,@Query("flag") int flag);
+
 
 }
