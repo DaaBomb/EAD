@@ -1,37 +1,23 @@
 package com.wrath.client;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Switch;
-import android.widget.Toast;
-
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.NotificationDetailsResponse;
-import com.wrath.client.dto.SecurityRequest;
-import com.wrath.client.dto.Topic;
-import com.wrath.client.dto.TopicsResponse;
-import com.wrath.client.dto.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +37,7 @@ public class SecurityRequestPage extends BaseNav {
     FloatingActionButton btn_add_topic;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
-
+    private SwipeRefreshLayout swipeContainer;
     boolean isLoading = false;
     private int flag = 1;
 
@@ -71,7 +57,6 @@ public class SecurityRequestPage extends BaseNav {
         initialize();
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
-//        View root = inflater.inflate(R.layout.fragment_discussion, container, false);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         btn_add_topic = findViewById(R.id.fab);
         btn_add_topic.setOnClickListener(new View.OnClickListener() {
@@ -81,13 +66,39 @@ public class SecurityRequestPage extends BaseNav {
                 startActivity(i);
             }
         });
-        populateData(userObj.getAddress().getSociety_id(), 1);
+        if(userObj.getProfession()==null)
+            populateUserData(userObj.getAddress().getSociety_id(), 1,userObj.getAddress().getBlockname(),userObj.getAddress().getFlatnum());
+        else
+            populateData(userObj.getAddress().getSociety_id(), 1);
         initAdapter();
         initScrollListener();
-}
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recreate();
+            }
+        });
+    }
 
     private void populateData(String societyId, int flag) {
         compositeDisposable.add(iMyService.getSecurityRequests(societyId, flag)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String response) throws Exception {
+                        NotificationDetailsResponse res = gson.fromJson(response, NotificationDetailsResponse.class);
+                        if (res.getMsg().equalsIgnoreCase("successful"))
+                            notificationDetailsList.addAll(res.getNotificationDetails());
+                        recyclerViewAdapter.notifyDataSetChanged();
+                    }
+                })
+        );
+    }
+
+    private void populateUserData(String societyId, int flag,String blockname,String flatnum) {
+        compositeDisposable.add(iMyService.getSecurityUserRequests(societyId, flag,blockname,flatnum)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
@@ -152,26 +163,46 @@ public class SecurityRequestPage extends BaseNav {
 
         notificationDetailsList.add(null);
         recyclerViewAdapter.notifyItemInserted(notificationDetailsList.size() - 1);
-
-        compositeDisposable.add(iMyService.getSecurityRequests(societyId, flag)
-                .subscribeOn(Schedulers.io())
-                .delay(3, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String response) throws Exception {
-                        NotificationDetailsResponse res = gson.fromJson(response, NotificationDetailsResponse.class);
-                        notificationDetailsList.remove(notificationDetailsList.size() - 1);
-                        int scrollPosition = notificationDetailsList.size();
-                        recyclerViewAdapter.notifyItemRemoved(scrollPosition);
-                        if (res.getMsg().equalsIgnoreCase("successful")) {
-                            notificationDetailsList.addAll(res.getNotificationDetails());
-                            recyclerViewAdapter.notifyDataSetChanged();
+        if(userObj.getProfession()==null){
+            compositeDisposable.add(iMyService.getSecurityUserRequests(societyId, flag,userObj.getAddress().getBlockname(),userObj.getAddress().getFlatnum())
+                    .subscribeOn(Schedulers.io())
+                    .delay(3, TimeUnit.SECONDS)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String response) throws Exception {
+                            NotificationDetailsResponse res = gson.fromJson(response, NotificationDetailsResponse.class);
+                            notificationDetailsList.remove(notificationDetailsList.size() - 1);
+                            int scrollPosition = notificationDetailsList.size();
+                            recyclerViewAdapter.notifyItemRemoved(scrollPosition);
+                            if (res.getMsg().equalsIgnoreCase("successful")) {
+                                notificationDetailsList.addAll(res.getNotificationDetails());
+                                recyclerViewAdapter.notifyDataSetChanged();
+                            }
                         }
-                    }
-                })
-        );
-
+                    })
+            );
+        }
+        else{
+            compositeDisposable.add(iMyService.getSecurityRequests(societyId, flag)
+                    .subscribeOn(Schedulers.io())
+                    .delay(3, TimeUnit.SECONDS)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String response) throws Exception {
+                            NotificationDetailsResponse res = gson.fromJson(response, NotificationDetailsResponse.class);
+                            notificationDetailsList.remove(notificationDetailsList.size() - 1);
+                            int scrollPosition = notificationDetailsList.size();
+                            recyclerViewAdapter.notifyItemRemoved(scrollPosition);
+                            if (res.getMsg().equalsIgnoreCase("successful")) {
+                                notificationDetailsList.addAll(res.getNotificationDetails());
+                                recyclerViewAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    })
+            );
+        }
         recyclerViewAdapter.notifyDataSetChanged();
         isLoading = false;
     }
