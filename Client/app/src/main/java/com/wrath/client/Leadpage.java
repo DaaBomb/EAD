@@ -9,11 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.wrath.client.dto.SecurityRequest;
 
 public class Leadpage extends BaseNav {
 
     Button btn_forum;
-
+    Button btn_gate;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class Leadpage extends BaseNav {
         initialize();
 
         btn_forum = (Button) findViewById(R.id.btn_forum);
-
+        btn_gate = (Button) findViewById(R.id.btn_gate);
         btn_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +34,13 @@ public class Leadpage extends BaseNav {
                 Bundle extras = new Bundle();
                 extras.putString("user", user);
                 i.putExtras(extras);
+                startActivity(i);
+            }
+        });
+        btn_gate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, SecurityRequestPage.class);
                 startActivity(i);
             }
         });
