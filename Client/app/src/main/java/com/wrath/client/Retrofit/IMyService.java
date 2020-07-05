@@ -66,5 +66,8 @@ public interface IMyService {
     @GET("api/gateregister/getRequests/")
     Observable<String> getSecurityRequests(@Query("society_id") String society_id,@Query("flag") int flag);
 
+    @GET("api/gateregister/getUserRequests/")
+    Observable<String> getSecurityUserRequests(@Query("society_id") String society_id,@Query("flag") int flag,@Query("blockname") String blockname,@Query("flatnum") String flatnum);
+
 
 }

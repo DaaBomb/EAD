@@ -37,18 +37,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+
         <Button
             android:id="@+id/btn_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="260dp"
+            android:layout_marginStart="152dp"
+            android:layout_marginLeft="152dp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="272dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/karla"
             android:text="Events"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <Button
+            android:id="@+id/btn_gate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="264dp"
+            android:background="@drawable/rounded_button"
+            android:fontFamily="@font/karla"
+
+            android:text="Gate"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
 
