@@ -2,9 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +31,6 @@
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/karla"
-                    android:textStyle="bold"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textSize="18dp" />
 
@@ -38,10 +40,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/karla"
                     android:layout_gravity="center_vertical"
-                    android:gravity=""
                     android:text="9:10pm, 7th April 2020"
                     android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textSize="10dp" />
+                    android:textSize="12dp"
+                    android:textColor="?android:attr/textColorSecondary"/>
 
             </LinearLayout>
 
@@ -53,7 +55,7 @@
                 android:layout_marginTop="15dp"
                 android:text="Posted by John Doe"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/myTextColor"
                 android:textSize="15dp" />
 
         </LinearLayout>
@@ -66,7 +68,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:layout_gravity="right"
             android:layout_margin="8dp"
             android:orientation="horizontal">
@@ -77,7 +79,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:drawableRight="@drawable/ic_comment_orange_24dp"
+                android:text="5 Comments"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="12dp"
+                android:fontFamily="@font/karla"
+                android:drawableLeft="@drawable/ic_comment_orange_24dp"
+                android:drawablePadding="8dp"
                 android:layout_marginRight="8dp" />
 
         </LinearLayout>

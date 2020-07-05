@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView;
 public class Leadpage extends BaseNav {
 
     Button btn_forum;
+    Button btn_event;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,21 @@ public class Leadpage extends BaseNav {
         initialize();
 
         btn_forum = (Button) findViewById(R.id.btn_forum);
-
+        btn_event = (Button) findViewById(R.id.btn_event);
         btn_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Leadpage.this, ForumPage.class);
+                Bundle extras = new Bundle();
+                extras.putString("user", user);
+                i.putExtras(extras);
+                startActivity(i);
+            }
+        });
+        btn_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, EventsPage.class);
                 Bundle extras = new Bundle();
                 extras.putString("user", user);
                 i.putExtras(extras);
