@@ -4,7 +4,10 @@
     android:layout_width="420dp"
     android:layout_height="wrap_content"
     card_view:cardElevation="1dp"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    card_view:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

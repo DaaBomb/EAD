@@ -14,7 +14,12 @@ import com.wrath.client.dto.SecurityRequest;
 public class Leadpage extends BaseNav {
 
     Button btn_forum;
+
+    Button btn_event;
+
+
     Button btn_gate;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +31,11 @@ public class Leadpage extends BaseNav {
         initialize();
 
         btn_forum = (Button) findViewById(R.id.btn_forum);
+
+        btn_event = (Button) findViewById(R.id.btn_event);
+
         btn_gate = (Button) findViewById(R.id.btn_gate);
+
         btn_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,10 +46,20 @@ public class Leadpage extends BaseNav {
                 startActivity(i);
             }
         });
+
+        btn_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, EventsPage.class);
+                startActivity(i);
+            }
+        });
+
         btn_gate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Leadpage.this, SecurityRequestPage.class);
+
                 startActivity(i);
             }
         });

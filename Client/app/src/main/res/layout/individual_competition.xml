@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="12dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="2dp"
+       >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/event_details"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/karla"
+                android:text="Nam eget lectus eleifend ligula dignissim. Curabitur tellus nulla......"
+                android:textSize="16dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:textColor="@color/myTextColor"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="24dp"
+                android:text="NAME"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_button_blue"
+                android:drawableLeft="@drawable/ic_check_circle_white_24dp"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:text="Yes, I'm participating"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>

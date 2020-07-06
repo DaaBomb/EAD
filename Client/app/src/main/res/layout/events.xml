@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#f9f9f9"
     android:fitsSystemWindows="true"
-    tools:context=".SecurityPage"
     tools:openDrawer="end">
 
 
@@ -16,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
-        tools:context=".SecurityPage">
+        tools:context=".EventsPage">
 
         <include
             android:id="@+id/toolbar"
@@ -26,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/karla"
-            android:text="Entry Requests"
+            android:text="Upcoming Events"
             android:textColor="@color/myTextColor"
             android:textSize="30dp"
             android:textStyle="bold"
