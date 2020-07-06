@@ -51,9 +51,7 @@ public class Leadpage extends BaseNav {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Leadpage.this, EventsPage.class);
-                Bundle extras = new Bundle();
-                extras.putString("user", user);
-                i.putExtras(extras);
+                startActivity(i);
             }
         });
 
