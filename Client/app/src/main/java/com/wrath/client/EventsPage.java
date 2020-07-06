@@ -12,7 +12,7 @@ public class EventsPage extends BaseNav {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.events);
+        setContentView(R.layout.event_specific);
 
 //        setToolbar((Toolbar) findViewById(R.id.toolbar));
 //        setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
