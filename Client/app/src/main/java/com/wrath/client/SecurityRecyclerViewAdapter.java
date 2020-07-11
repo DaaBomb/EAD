@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wrath.client.dto.NotificationDetails;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SecurityRecyclerViewAdapter extends RecyclerView.Adapter<SecurityRecyclerViewAdapter.ViewHolder> {
@@ -66,7 +67,7 @@ public class SecurityRecyclerViewAdapter extends RecyclerView.Adapter<SecurityRe
 
     private class ItemViewHolder extends SecurityRecyclerViewAdapter.ViewHolder {
 
-        TextView blockName, flatNumber, visitorName, purpose, status;
+        TextView blockName, flatNumber, visitorName, purpose, status,date;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +76,7 @@ public class SecurityRecyclerViewAdapter extends RecyclerView.Adapter<SecurityRe
             visitorName = itemView.findViewById(R.id.visitor_name);
             purpose = itemView.findViewById(R.id.purpose);
             status = itemView.findViewById(R.id.status);
+            date = itemView.findViewById(R.id.date);
         }
     }
 
@@ -106,6 +108,10 @@ public class SecurityRecyclerViewAdapter extends RecyclerView.Adapter<SecurityRe
             status = "Pending...";
         }
         viewHolder.status.setText(status);
+        String pattern ="EEE, d MMM yyyy, HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(item.getDate_created());
+        viewHolder.date.setText(date);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

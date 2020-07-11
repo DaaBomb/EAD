@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToManagerPage() {
-        Intent i = new Intent(MainActivity.this, ManagerPage.class);
+        Intent i = new Intent(MainActivity.this, Leadpage.class);
         startActivity(i);
     }
 }

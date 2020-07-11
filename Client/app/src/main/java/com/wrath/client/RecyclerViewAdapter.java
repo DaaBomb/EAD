@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -70,12 +71,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tvItem;
         TextView date_topic;
         TextView creator_name;
-
+        Button add_comment;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView, mOnTopicListener);
             tvItem = itemView.findViewById(R.id.tvItem);
             date_topic=itemView.findViewById(R.id.date_topic);
             creator_name=itemView.findViewById(R.id.creator_name);
+            add_comment = itemView.findViewById(R.id.btn_add_comment);
         }
     }
 
@@ -102,6 +104,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String date = simpleDateFormat.format(item.getDate_created());
         viewHolder.date_topic.setText(date);
         viewHolder.creator_name.setText(item.getCreator_name());
+        viewHolder.add_comment.setText(item.getComments().size()+( item.getComments().size()==1?" comment":" comments"));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

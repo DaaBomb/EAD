@@ -59,6 +59,9 @@ public class SecurityRequestPage extends BaseNav {
         iMyService = retrofitClient.create(IMyService.class);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         btn_add_topic = findViewById(R.id.fab);
+        if(userObj.getProfession()==null){
+            btn_add_topic.setVisibility(View.INVISIBLE);
+        }
         btn_add_topic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
