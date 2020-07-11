@@ -83,7 +83,7 @@
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="12dp"
                 android:fontFamily="@font/karla"
-                android:drawableLeft="@drawable/ic_comment_orange_24dp"
+                android:drawableRight="@drawable/ic_comment_orange_24dp"
                 android:drawablePadding="8dp"
                 android:layout_marginRight="8dp" />
 

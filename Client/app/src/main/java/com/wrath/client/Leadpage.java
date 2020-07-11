@@ -50,7 +50,7 @@ public class Leadpage extends BaseNav {
         btn_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Leadpage.this, EventsPage.class);
+                Intent i = new Intent(Leadpage.this, EventsListPage.class);
                 startActivity(i);
             }
         });

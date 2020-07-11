@@ -14,7 +14,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".SecurityRequestPage"/>
+        <activity android:name=".EventFormPage2"></activity>
+        <activity android:name=".EventFormPage" />
+        <activity android:name=".EventsListPage" />
+        <activity android:name=".EventRecyclerViewAdapter" />
+        <activity android:name=".SecurityRequestPage" />
         <activity android:name=".SecurityRecyclerViewAdapter" />
         <activity android:name=".BaseNav" />
         <activity android:name=".IndividualTopic" />
