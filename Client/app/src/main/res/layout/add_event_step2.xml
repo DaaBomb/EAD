@@ -9,6 +9,9 @@
     android:background="#f9f9f9"
     android:fitsSystemWindows="true"
     tools:openDrawer="end">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -81,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="56dp"
             android:background="@drawable/rounded_button"
             android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
             android:drawablePadding="5dp"
@@ -97,9 +100,9 @@
             android:id="@+id/button3"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/rounded_button"
             android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
             android:drawablePadding="5dp"
@@ -157,11 +160,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/karla"
             android:text="description"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="430dp" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputEditText2" />
 
         <TextView
             android:id="@+id/textView18"
@@ -175,19 +179,6 @@
             android:textSize="14dp"
             app:layout_constraintTop_toBottomOf="@+id/textView16"
             card_view:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/karla"
-            android:text="Remove competition"
-            android:textSize="12dp"
-            app:layout_constraintStart_toEndOf="@+id/button6"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditText2"
@@ -217,18 +208,19 @@
 
         <View
             android:id="@+id/divider5"
-            android:layout_width="546dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="32dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
         <View
             android:id="@+id/divider6"
-            android:layout_width="546dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -236,6 +228,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
