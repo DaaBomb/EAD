@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#D87216</color>
     <color name="colorAccent">#f9f9f9</color>
     <color name="myTextColor">#000000</color>
+    <color name="bck">#fcfcfc</color>
     <color name="colorSecondary">#1357a6</color>
     <color name="grayone">#f5f5f5</color>
 </resources>
