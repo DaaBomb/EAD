@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.common;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -23,6 +23,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
+import com.wrath.client.MainActivity;
+import com.wrath.client.R;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
@@ -44,7 +46,6 @@ import retrofit2.Retrofit;
 public class BaseNav extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreferences sharedPreferences;
-    String user;
     BroadcastReceiver broadcastReceiver;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
@@ -54,8 +55,10 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     TextView username;
     TextView house_details;
-    User userObj;
-    Gson gson = new Gson();
+
+    public String user;
+    public User userObj;
+    public Gson gson = new Gson();
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
 

@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.wrath.client.dto.SecurityRequest;
+import com.wrath.client.user.event.EventsListPage;
+import com.wrath.client.R;
+import com.wrath.client.common.BaseNav;
+import com.wrath.client.security.SecurityRequestPage;
+import com.wrath.client.user.forum.ForumPage;
 
 public class Leadpage extends BaseNav {
 

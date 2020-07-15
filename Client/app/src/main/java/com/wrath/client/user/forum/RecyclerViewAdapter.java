@@ -1,6 +1,5 @@
-package com.wrath.client;
+package com.wrath.client.user.forum;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wrath.client.R;
 import com.wrath.client.dto.Topic;
 
 import java.text.SimpleDateFormat;

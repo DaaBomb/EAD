@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.common;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,6 +19,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
+import com.wrath.client.MainActivity;
+import com.wrath.client.R;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.User;
 

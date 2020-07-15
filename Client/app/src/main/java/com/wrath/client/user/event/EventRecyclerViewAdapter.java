@@ -1,18 +1,16 @@
-package com.wrath.client;
+package com.wrath.client.user.event;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.wrath.client.R;
 import com.wrath.client.dto.EventDetails;
-import com.wrath.client.dto.Topic;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

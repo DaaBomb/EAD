@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.security;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wrath.client.R;
 import com.wrath.client.dto.NotificationDetails;
 
 import java.text.SimpleDateFormat;

@@ -1,11 +1,12 @@
-package com.wrath.client;
+package com.wrath.client.register;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.gson.Gson;
+import com.wrath.client.R;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
-import com.wrath.client.dto.BuilderSociety;
+import com.wrath.client.dto.StaffSociety;
 import com.wrath.client.dto.User;
-import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
+import com.wrath.client.security.SecurityPage;
+import com.wrath.client.user.Leadpage;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,17 +32,15 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
-public class RegisterBuilder extends AppCompatActivity {
+public class RegisterStaff extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     IMyService iMyService;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
     Button btn_continue;
-    MaterialEditText edt_society_name;
-    MaterialEditText edt_address;
-    MaterialEditText edt_city;
     SharedPreferences sharedPreferences;
-    String token;
-
     Gson gson = new Gson();
+    String token;
 
     @Override
     protected void onStop() {
@@ -50,27 +51,25 @@ public class RegisterBuilder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_builder);
+        setContentView(R.layout.activity_register_staff);
+
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
-
-        Bundle extras = getIntent().getExtras();
-        final User user = gson.fromJson(extras.getString("user"), User.class);
-
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
-        edt_society_name = (MaterialEditText) findViewById(R.id.edt_aprt_name);
-        edt_address = (MaterialEditText) findViewById(R.id.edt_aprt_address);
-        edt_city = (MaterialEditText) findViewById(R.id.edt_aprt_city);
+
+        radioGroup = findViewById(R.id.radio_group);
+        radioButton = findViewById(R.id.staff_man);
+
         btn_continue = (Button) findViewById(R.id.btn_continue);
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerSociety(
-                        user,
-                        edt_society_name.getText().toString(),
-                        edt_address.getText().toString(),
-                        edt_city.getText().toString()
-                );
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                if (radioId == radioButton.getId()) {
+                    registerStaff("manager");
+                } else {
+                    registerStaff("security");
+                }
             }
         });
 
@@ -82,38 +81,39 @@ public class RegisterBuilder extends AppCompatActivity {
         });
     }
 
-    public void registerSociety(User user, String society_name, String address, String city) {
-        if (TextUtils.isEmpty(edt_society_name.getText().toString())) {
-            Toast.makeText(RegisterBuilder.this, "Society name cannot be empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (TextUtils.isEmpty(edt_address.getText().toString())) {
-            Toast.makeText(RegisterBuilder.this, "Address cannot be empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (TextUtils.isEmpty(edt_city.getText().toString())) {
-            Toast.makeText(RegisterBuilder.this, "City name cannot be empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-        BuilderSociety builderSociety = new BuilderSociety();
-        builderSociety.setName(society_name);
-        builderSociety.setAddress(address);
-        builderSociety.setCity(city);
+    public void onRadioButtonClicked(View view) {
+    }
+
+    public void registerStaff(final String staff_role) {
+
+        Bundle extras = getIntent().getExtras();
+        String city = extras.getString("city");
+        String society_name = extras.getString("society_name");
+        User user = gson.fromJson(extras.getString("user"), User.class);
         user.setToken(token);
-        builderSociety.setUser(user);
-        RequestBody request = RequestBody.create(MediaType.parse("application/json"), gson.toJson(builderSociety));
-        compositeDisposable.add(iMyService.addBuilder(request)
+        StaffSociety staffSociety = new StaffSociety();
+        staffSociety.setName(society_name);
+        staffSociety.setProfession(staff_role.toLowerCase());
+        staffSociety.setCity(city.trim());
+        staffSociety.setUser(user);
+        RequestBody request = RequestBody.create(MediaType.parse("application/json"), gson.toJson(staffSociety));
+        compositeDisposable.add(iMyService.addStaff(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
                         BaseResponse res = gson.fromJson(response, BaseResponse.class);
-                        Toast.makeText(RegisterBuilder.this, "" + res.getMsg(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterStaff.this, "" + res.getMsg(), Toast.LENGTH_LONG).show();
                         if (res.getMsg().equals("successful")) {
-                            Intent i = new Intent(RegisterBuilder.this, Leadpage.class);
-                            sharedPreferences.edit().putString("user", gson.toJson(res.getUser())).apply();
+                            Intent i;
+                            if (staff_role.equalsIgnoreCase("manager")) {
+                                i = new Intent(RegisterStaff.this, Leadpage.class);
+                            } else {
+                                i = new Intent(RegisterStaff.this, SecurityPage.class);
+                            }
                             Bundle extras = new Bundle();
+                            sharedPreferences.edit().putString("user", gson.toJson(res.getUser())).apply();
                             extras.putString("user", gson.toJson(res.getUser()));
                             i.putExtras(extras);
                             startActivity(i);
@@ -121,5 +121,7 @@ public class RegisterBuilder extends AppCompatActivity {
                     }
                 })
         );
+
     }
 }
+

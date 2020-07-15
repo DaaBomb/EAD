@@ -1,20 +1,17 @@
-package com.wrath.client;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.wrath.client.register.builder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.wrath.client.R;
+import com.wrath.client.user.Leadpage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +61,7 @@ public class RegisterBuilderStep2 extends AppCompatActivity {
                         rules.add(editTextArray[i].getText().toString());
                     }
                 }
-                startActivity(new Intent(RegisterBuilderStep2.this,Leadpage.class));
+                startActivity(new Intent(RegisterBuilderStep2.this, Leadpage.class));
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.user.forum;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -12,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.wrath.client.R;
+import com.wrath.client.dto.Model;
 
 import java.util.ArrayList;
 

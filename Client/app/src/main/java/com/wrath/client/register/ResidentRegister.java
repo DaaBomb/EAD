@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.register;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,11 +15,13 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.wrath.client.R;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.dto.BaseResponse;
 import com.wrath.client.dto.User;
 import com.wrath.client.dto.UserResidence;
+import com.wrath.client.user.Leadpage;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;

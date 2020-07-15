@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.user.forum;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,11 +23,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.wrath.client.R;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
+import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.BaseResponse;
 import com.wrath.client.dto.Comment;
 import com.wrath.client.dto.CommentUser;
+import com.wrath.client.dto.Model;
 import com.wrath.client.dto.Topic;
 import com.wrath.client.dto.User;
 

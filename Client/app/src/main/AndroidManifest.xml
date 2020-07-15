@@ -14,23 +14,23 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".EventFormPage2"></activity>
-        <activity android:name=".EventFormPage" />
-        <activity android:name=".EventsListPage" />
-        <activity android:name=".EventRecyclerViewAdapter" />
-        <activity android:name=".SecurityRequestPage" />
-        <activity android:name=".SecurityRecyclerViewAdapter" />
-        <activity android:name=".BaseNav" />
-        <activity android:name=".IndividualTopic" />
-        <activity android:name=".ForumPage" />
-        <activity android:name=".ResidentRegister" />
+        <activity android:name=".user.event.EventFormPage2"></activity>
+        <activity android:name=".user.event.EventFormPage" />
+        <activity android:name=".user.event.EventsListPage" />
+        <activity android:name=".user.event.EventRecyclerViewAdapter" />
+        <activity android:name=".security.SecurityRequestPage" />
+        <activity android:name=".security.SecurityRecyclerViewAdapter" />
+        <activity android:name=".common.BaseNav" />
+        <activity android:name=".user.forum.IndividualTopic" />
+        <activity android:name=".user.forum.ForumPage" />
+        <activity android:name=".register.ResidentRegister" />
         <activity
-            android:name=".Leadpage"
+            android:name=".user.Leadpage"
             android:label="Home" />
-        <activity android:name=".RegisterBuilderStep2" />
-        <activity android:name=".RegisterBuilder" />
-        <activity android:name=".Register" />
-        <activity android:name=".HomepageActivity" />
+        <activity android:name=".register.builder.RegisterBuilderStep2" />
+        <activity android:name=".register.builder.RegisterBuilder" />
+        <activity android:name=".register.main.Register" />
+        <activity android:name=".register.HomepageActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop">
@@ -40,14 +40,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterStaff" />
-        <activity android:name=".SelectCommunity" />
-        <activity android:name=".SecurityPage" />
-        <activity android:name=".ManagerPage" />
-        <activity android:name=".EventsPage" />
-        <activity android:name=".BuilderPage" />
+        <activity android:name=".register.RegisterStaff" />
+        <activity android:name=".register.SelectCommunity" />
+        <activity android:name=".security.SecurityPage" />
+        <activity android:name=".user.event.EventsPage" />
 
-        <service android:name=".FirebaseMessageReceiver">
+        <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

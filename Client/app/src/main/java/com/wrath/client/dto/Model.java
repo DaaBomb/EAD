@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.dto;
 
 
 /**

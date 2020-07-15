@@ -1,4 +1,4 @@
-package com.wrath.client;
+package com.wrath.client.register;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
+import com.wrath.client.R;
+import com.wrath.client.register.builder.RegisterBuilder;
 
 public class HomepageActivity extends AppCompatActivity {
     Button btn_builder;

@@ -1,12 +1,13 @@
-package com.wrath.client;
+package com.wrath.client.user.event;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
+import com.wrath.client.R;
+import com.wrath.client.common.BaseNav;
 
 public class EventFormPage2 extends BaseNav {
 

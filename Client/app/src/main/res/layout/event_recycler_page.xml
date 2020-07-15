@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#f9f9f9"
     android:fitsSystemWindows="true"
-    tools:context=".SecurityPage"
+    tools:context=".security.SecurityPage"
     tools:openDrawer="end">
 
 
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
-        tools:context=".SecurityPage">
+        tools:context=".staff.security.SecurityPage">
 
         <include
             android:id="@+id/toolbar"
