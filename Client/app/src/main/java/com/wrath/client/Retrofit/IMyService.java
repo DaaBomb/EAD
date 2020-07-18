@@ -69,5 +69,10 @@ public interface IMyService {
     @GET("api/gateregister/getUserRequests/")
     Observable<String> getSecurityUserRequests(@Query("society_id") String society_id,@Query("flag") int flag,@Query("blockname") String blockname,@Query("flatnum") String flatnum);
 
+    @POST("api/programmes/")
+    Observable<String> addEvent(@Body RequestBody eventDetails);
+
+    @GET("api/programmes/getEvents/")
+    Observable<String> getEvents(@Query("society_id") String society_id,@Query("flag") int flag);
 
 }

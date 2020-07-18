@@ -1,18 +1,20 @@
 package com.wrath.client.user;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.wrath.client.user.event.EventsListPage;
 import com.wrath.client.R;
 import com.wrath.client.common.BaseNav;
 import com.wrath.client.security.SecurityRequestPage;
+import com.wrath.client.user.event.EventsListPage;
 import com.wrath.client.user.forum.ForumPage;
 
 public class Leadpage extends BaseNav {
@@ -39,6 +41,16 @@ public class Leadpage extends BaseNav {
         btn_event = (Button) findViewById(R.id.btn_event);
 
         btn_gate = (Button) findViewById(R.id.btn_gate);
+
+        ImageButton panic = findViewById(R.id.panic);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
+        panic.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mp.start();
+                return false;
+            }
+        });
 
         btn_forum.setOnClickListener(new View.OnClickListener() {
             @Override

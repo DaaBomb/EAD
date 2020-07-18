@@ -102,7 +102,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         String date = simpleDateFormat.format(item.getStart_date());
         viewHolder.starting_date.setText(date);
         viewHolder.description.setText(item.getDescription());
-        viewHolder.event_time.setText("10:00 AM");
+        viewHolder.event_time.setText(item.getTime());
         viewHolder.number.setText(String.valueOf(item.getAttending().size()));
     }
 

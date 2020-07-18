@@ -18,7 +18,7 @@
             >
 
             <TextView
-                android:id="@+id/event_details"
+                android:id="@+id/competitonDetails"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -28,10 +28,10 @@
                 android:text="Nam eget lectus eleifend ligula dignissim. Curabitur tellus nulla......"
                 android:textSize="16dp"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/textView13" />
+                card_view:layout_constraintTop_toBottomOf="@+id/competitionName" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/competitionName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -55,7 +55,7 @@
                 android:textSize="16dp"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+                card_view:layout_constraintTop_toBottomOf="@+id/competitonDetails" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

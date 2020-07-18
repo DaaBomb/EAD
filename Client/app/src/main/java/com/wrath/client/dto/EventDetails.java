@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class EventDetails {
+    private String _id;
     private String name;
     private String society_id;
     private Date start_date;
@@ -13,8 +14,14 @@ public class EventDetails {
     private List<String> attending;
     private Boolean food_choice;
     private List<Programme> programmes;
+    private User user;
+    private String time;
 
-    public EventDetails(String name, String society_id, Date start_date, String description, String creator_name, List<String> attending, Boolean food_choice, List<Programme> programmes) {
+    public EventDetails() {
+    }
+
+    public EventDetails(String _id, String name, String society_id, Date start_date, String description, String creator_name, List<String> attending, Boolean food_choice, List<Programme> programmes, User user) {
+        this._id = _id;
         this.name = name;
         this.society_id = society_id;
         this.start_date = start_date;
@@ -23,9 +30,15 @@ public class EventDetails {
         this.attending = attending;
         this.food_choice = food_choice;
         this.programmes = programmes;
+        this.user = user;
     }
 
-    public EventDetails() {
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {
@@ -88,7 +101,23 @@ public class EventDetails {
         return programmes;
     }
 
-    public void setProgrammes(ArrayList<Programme> programmes) {
+    public void setProgrammes(List<Programme> programmes) {
         this.programmes = programmes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

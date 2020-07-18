@@ -20,14 +20,21 @@ import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
 import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.EventDetails;
+import com.wrath.client.dto.GetEventsResponse;
+import com.wrath.client.dto.NotificationDetailsResponse;
 import com.wrath.client.dto.Programme;
+import com.wrath.client.dto.TopicsResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 public class EventsListPage extends BaseNav implements EventRecyclerViewAdapter.OnEventListener {
@@ -66,16 +73,13 @@ public class EventsListPage extends BaseNav implements EventRecyclerViewAdapter.
         btn_add_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(EventsListPage.this, EventFormPage2.class);
+                Intent i = new Intent(EventsListPage.this, EventFormPage.class);
                 startActivity(i);
             }
         });
         initAdapter();
         initScrollListener();
-        if (userObj.getProfession() == null)
-            populateUserData(userObj.getAddress().getSociety_id(), 1, userObj.getAddress().getBlockname(), userObj.getAddress().getFlatnum());
-        else
-            populateData(userObj.getAddress().getSociety_id(), 1);
+        populateData(userObj.getAddress().getSociety_id(), 1);
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -86,19 +90,19 @@ public class EventsListPage extends BaseNav implements EventRecyclerViewAdapter.
     }
 
     private void populateData(String societyId, int flag) {
-        Programme dummyProgramme = new Programme("running race",Arrays.asList("1", "2"));
-        List<Programme> arr = Arrays.asList(dummyProgramme);
-        List<EventDetails> dummy = Arrays.asList(new EventDetails("Diwali", userObj.getAddress().getSociety_id(), new Date(), "description", "creator_name", Arrays.asList("1", "2"), true, arr));
-        eventDetailsList.addAll(dummy);
-        recyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    private void populateUserData(String societyId, int flag, String blockname, String flatnum) {
-        Programme dummyProgramme = new Programme("running race", Arrays.asList("1", "2"));
-        List<Programme> arr = Arrays.asList(dummyProgramme);
-        List<EventDetails> dummy = Arrays.asList(new EventDetails("Diwali", userObj.getAddress().getSociety_id(), new Date(), "description", "creator_name", Arrays.asList("1", "2"), true, arr));
-        eventDetailsList.addAll(dummy);
-        recyclerViewAdapter.notifyDataSetChanged();
+        compositeDisposable.add(iMyService.getEvents(societyId, flag)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String response) throws Exception {
+                        GetEventsResponse res = gson.fromJson(response, GetEventsResponse.class);
+                        if (res.getMsg().equalsIgnoreCase("successful"))
+                            eventDetailsList.addAll(res.getEventDetails());
+                        recyclerViewAdapter.notifyDataSetChanged();
+                    }
+                })
+        );
     }
 
     private void initAdapter() {
@@ -148,11 +152,39 @@ public class EventsListPage extends BaseNav implements EventRecyclerViewAdapter.
     }
 
     private void loadMore(String societyId, int flag) {
+
+        eventDetailsList.add(null);
+        recyclerViewAdapter.notifyItemInserted(eventDetailsList.size() - 1);
+
+        compositeDisposable.add(iMyService.getEvents(societyId, flag)
+                .subscribeOn(Schedulers.io())
+                .delay(3, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String response) throws Exception {
+                        GetEventsResponse res = gson.fromJson(response, GetEventsResponse.class);
+                        eventDetailsList.remove(eventDetailsList.size() - 1);
+                        int scrollPosition = eventDetailsList.size();
+                        recyclerViewAdapter.notifyItemRemoved(scrollPosition);
+                        if (res.getMsg().equalsIgnoreCase("successful")) {
+                            eventDetailsList.addAll(res.getEventDetails());
+                            recyclerViewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                })
+        );
+
+        recyclerViewAdapter.notifyDataSetChanged();
         isLoading = false;
     }
 
     @Override
     public void onEventClick(int position) {
-        Toast.makeText(EventsListPage.this, "" + position, Toast.LENGTH_LONG).show();
+        Intent i = new Intent(EventsListPage.this,EventsPage.class);
+        Bundle extras = new Bundle();
+        extras.putString("eventDetails",gson.toJson(eventDetailsList.get(position)));
+        i.putExtras(extras);
+        startActivity(i);
     }
 }

@@ -59,8 +59,8 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
     public String user;
     public User userObj;
     public Gson gson = new Gson();
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
-    IMyService iMyService;
+    public CompositeDisposable compositeDisposable = new CompositeDisposable();
+    public IMyService iMyService;
 
     @Override
     protected void onStop() {
