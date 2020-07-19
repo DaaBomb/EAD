@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Leadpage"
+    tools:context=".user.Leadpage"
     tools:openDrawer="end">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#f9f9f9"
-        tools:context=".ForumPage">
+        tools:context=".user.forum.ForumPage">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
