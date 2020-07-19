@@ -14,13 +14,17 @@ public class EventDetails {
     private List<String> attending;
     private Boolean food_choice;
     private List<Programme> programmes;
+    private List<String> veg;
+    private List<String> non_veg;
+    private List<String> programmeslist;
     private User user;
     private String time;
+
 
     public EventDetails() {
     }
 
-    public EventDetails(String _id, String name, String society_id, Date start_date, String description, String creator_name, List<String> attending, Boolean food_choice, List<Programme> programmes, User user) {
+    public EventDetails(String _id, String name, String society_id, Date start_date, String description, String creator_name, List<String> attending, Boolean food_choice, List<Programme> programmes, List<String> veg, List<String> non_veg, List<String> programmeslist, User user, String time) {
         this._id = _id;
         this.name = name;
         this.society_id = society_id;
@@ -30,7 +34,11 @@ public class EventDetails {
         this.attending = attending;
         this.food_choice = food_choice;
         this.programmes = programmes;
+        this.veg = veg;
+        this.non_veg = non_veg;
+        this.programmeslist = programmeslist;
         this.user = user;
+        this.time = time;
     }
 
     public String get_id() {
@@ -119,5 +127,29 @@ public class EventDetails {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<String> getVeg() {
+        return veg;
+    }
+
+    public void setVeg(List<String> veg) {
+        this.veg = veg;
+    }
+
+    public List<String> getNon_veg() {
+        return non_veg;
+    }
+
+    public void setNon_veg(List<String> non_veg) {
+        this.non_veg = non_veg;
+    }
+
+    public List<String> getProgrammeslist() {
+        return programmeslist;
+    }
+
+    public void setProgrammeslist(List<String> programmeslist) {
+        this.programmeslist = programmeslist;
     }
 }

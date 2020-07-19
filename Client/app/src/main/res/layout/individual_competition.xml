@@ -43,6 +43,7 @@
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <Button
+                android:id="@+id/participate_btn"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

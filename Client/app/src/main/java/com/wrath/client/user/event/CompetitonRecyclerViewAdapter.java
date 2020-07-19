@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wrath.client.R;
 import com.wrath.client.dto.Programme;
+import com.wrath.client.dto.User;
 
 import java.util.List;
 
@@ -22,10 +24,11 @@ public class CompetitonRecyclerViewAdapter extends RecyclerView.Adapter<Competit
     private final int VIEW_TYPE_LOADING = 1;
     public List<Programme> mProgrammeList;
     public CompetitonRecyclerViewAdapter.OnProgrammeListener mOnProgrammeListener;
-
-    public CompetitonRecyclerViewAdapter(List<Programme> programmeList, CompetitonRecyclerViewAdapter.OnProgrammeListener onProgrammeListener) {
+    public User userObj;
+    public CompetitonRecyclerViewAdapter(List<Programme> programmeList, CompetitonRecyclerViewAdapter.OnProgrammeListener onProgrammeListener, User userobj) {
         this.mProgrammeList = programmeList;
         this.mOnProgrammeListener = onProgrammeListener;
+        this.userObj=userobj;
     }
 
     @NonNull
@@ -71,11 +74,13 @@ public class CompetitonRecyclerViewAdapter extends RecyclerView.Adapter<Competit
 
         TextView competitionName;
         TextView description;
+        Button participate_btn;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView, mOnProgrammeListener);
             competitionName = itemView.findViewById(R.id.competitionName);
             description = itemView.findViewById(R.id.competitonDetails);
+            participate_btn = itemView.findViewById(R.id.participate_btn);
         }
     }
 
@@ -98,6 +103,7 @@ public class CompetitonRecyclerViewAdapter extends RecyclerView.Adapter<Competit
         Programme item = mProgrammeList.get(position);
         viewHolder.competitionName.setText(item.getName());
         viewHolder.description.setText(item.getDescription());
+        viewHolder.participate_btn.setText(item.getParticipants().contains(userObj.get_id())?"I won't be participating":"Yes, I'm participating");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -107,8 +113,7 @@ public class CompetitonRecyclerViewAdapter extends RecyclerView.Adapter<Competit
         public ViewHolder(@NonNull View itemView, CompetitonRecyclerViewAdapter.OnProgrammeListener onProgrammeListener) {
             super(itemView);
             this.onProgrammeListener = onProgrammeListener;
-
-            itemView.setOnClickListener(this);
+            itemView.findViewById(R.id.participate_btn).setOnClickListener(this);
         }
 
         @Override
