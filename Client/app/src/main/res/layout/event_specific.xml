@@ -228,6 +228,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/button9"
                 tools:layout_editor_absoluteX="0dp" />
 
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="48dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/karla"
+                android:padding="10dp"
+                android:text="save"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                app:layout_constraintVertical_bias="0.0" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
