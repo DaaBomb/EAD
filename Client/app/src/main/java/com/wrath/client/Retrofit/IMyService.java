@@ -75,4 +75,6 @@ public interface IMyService {
     @GET("api/programmes/getEvents/")
     Observable<String> getEvents(@Query("society_id") String society_id,@Query("flag") int flag);
 
+    @POST("api/programmes/register/")
+    Observable<String> registerEvent(@Body RequestBody eventRegisterRequest);
 }

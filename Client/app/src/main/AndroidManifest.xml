@@ -14,7 +14,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".user.event.CompetitonRecyclerViewAdapter"></activity>
+        <activity android:name=".user.event.CompetitionStatsRecyclerViewAdapter"></activity>
+        <activity android:name=".user.event.EventStatsPage" />
+        <activity android:name=".user.event.CompetitonRecyclerViewAdapter" />
         <activity android:name=".user.event.EventFormPage2" />
         <activity android:name=".user.event.EventFormPage" />
         <activity android:name=".user.event.EventsListPage" />
