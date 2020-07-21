@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="12dp"
+    card_view:cardElevation="1dp"
+    card_view:cardCornerRadius="8dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/event_details"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/karla"
+            android:text="Request additional details and specifications......"
+            android:textColor="@color/myTextColor"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+        <TextView
+            android:id="@+id/event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/karla"
+            android:text="Request title"
+            android:textColor="@color/colorSecondary"
+            android:textSize="24dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_title2" />
+
+        <TextView
+            android:id="@+id/event_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/karla"
+            android:text="Not Appointed"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toEndOf="@+id/event_title2"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/event_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/karla"
+            android:text="E 10"
+            android:textColor="@color/myTextColor"
+            android:textSize="24dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details"
+            card_view:srcCompat="@drawable/ic_date_range_blue_24dp" />
+
+        <TextView
+            android:id="@+id/event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/karla"
+            android:text="Monday, 8 Jul, 2020"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView5"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+        <TextView
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/karla"
+            android:text="10:00 PM"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView6"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="24dp"
+            card_view:layout_constraintStart_toEndOf="@+id/event_date"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details"
+            card_view:srcCompat="@drawable/ic_watch_blue_24dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

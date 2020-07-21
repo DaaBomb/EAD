@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="12dp"
+    card_view:cardElevation="1dp"
+    card_view:cardCornerRadius="8dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/event_details"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/karla"
+            android:text="Request additional details and specifications......"
+            android:textColor="@color/myTextColor"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_title" />
+
+        <TextView
+            android:id="@+id/event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/karla"
+            android:text="Request title"
+            android:textColor="@color/colorSecondary"
+            android:textSize="16dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/event_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/karla"
+            android:text="E 10"
+            android:textColor="@color/myTextColor"
+            android:textSize="24dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+        <TextView
+            android:id="@+id/event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/karla"
+            android:text="8 Jul, 2020"
+            android:textColor="@color/myTextColor"
+            android:textSize="24dp"
+            card_view:layout_constraintStart_toEndOf="@+id/event_title2"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+        <TextView
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/karla"
+            android:text="10:00 PM"
+            android:textColor="@color/myTextColor"
+            android:textSize="24dp"
+            card_view:layout_constraintStart_toEndOf="@+id/event_date"
+            card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
