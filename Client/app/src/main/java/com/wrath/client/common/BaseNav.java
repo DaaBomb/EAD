@@ -32,6 +32,7 @@ import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.PermissionRequest;
 import com.wrath.client.dto.PermissionResponse;
 import com.wrath.client.dto.User;
+import com.wrath.client.user.ProfilePage;
 
 import org.json.JSONObject;
 
@@ -149,6 +150,9 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
             case R.id.nav_logout:
                 sharedPreferences.edit().clear().apply();
                 startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.nav_profile:
+                startActivity(new Intent(this, ProfilePage.class));
                 return true;
             default:
                 return false;
