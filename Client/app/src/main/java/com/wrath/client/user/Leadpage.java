@@ -15,7 +15,7 @@ import com.wrath.client.R;
 import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.security.SecurityRequestPage;
-import com.wrath.client.user.concierge.ConciergeRequestForm;
+import com.wrath.client.user.announcement.AnnouncementsPage;
 import com.wrath.client.user.concierge.ConciergeRequestsPage;
 import com.wrath.client.user.event.EventsListPage;
 import com.wrath.client.user.forum.ForumPage;
@@ -32,6 +32,7 @@ public class Leadpage extends BaseNav {
     Button btn_event;
     Button btn_gate;
     Button btn_concierge;
+    Button btn_announcements;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class Leadpage extends BaseNav {
         btn_event = (Button) findViewById(R.id.btn_event);
         btn_gate = (Button) findViewById(R.id.btn_gate);
         btn_concierge = (Button) findViewById(R.id.btn_concierge);
+        btn_announcements = (Button) findViewById(R.id.btn_announcements);
 
         ImageButton panic = findViewById(R.id.panic);
         panic.setOnLongClickListener(new View.OnLongClickListener() {
@@ -92,7 +94,13 @@ public class Leadpage extends BaseNav {
             }
         });
 
-
+        btn_announcements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, AnnouncementsPage.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void activatePanicProtocol() {

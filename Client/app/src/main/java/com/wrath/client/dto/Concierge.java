@@ -16,11 +16,13 @@ public class Concierge {
     private String flatnum;
     private String society_id;
     private String _id;
+    private boolean resident_responded;
+    private boolean done;
 
     public Concierge() {
     }
 
-    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, boolean responded, boolean approved, String blockname, String flatnum, String society_id, String _id) {
+    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, boolean responded, boolean approved, String blockname, String flatnum, String society_id, String _id, boolean resident_responded, boolean done) {
         this.requirement = requirement;
         this.details = details;
         this.user = user;
@@ -34,6 +36,8 @@ public class Concierge {
         this.flatnum = flatnum;
         this.society_id = society_id;
         this._id = _id;
+        this.resident_responded = resident_responded;
+        this.done = done;
     }
 
     public String getRequirement() {
@@ -138,5 +142,21 @@ public class Concierge {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public boolean isResident_responded() {
+        return resident_responded;
+    }
+
+    public void setResident_responded(boolean resident_responded) {
+        this.resident_responded = resident_responded;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

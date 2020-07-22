@@ -85,7 +85,19 @@ public interface IMyService {
     @GET("api/concierge/getBySociety/")
     Observable<String> getSocietyConcierge(@Query("society_id") String society_id,@Query("flag") int flag);
 
+    @POST("api/concierge/responded/")
+    Observable<String> updateConciergeResponded(@Body RequestBody request);
+
+    @POST("api/concierge/done/")
+    Observable<String> updateConciergeDone(@Body RequestBody request);
+
     @GET("api/concierge/getByFlat/")
     Observable<String> getFlatConcierge(@Query("society_id") String society_id,@Query("flag") int flag,@Query("blockname") String blockname,@Query("flatnum") String flatnum);
+
+    @GET("api/announcements/getBySociety/")
+    Observable<String> getSocietyAnnouncements(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @POST("api/announcements/")
+    Observable<String> addAnnouncement(@Body RequestBody announcement);
 
 }
