@@ -50,6 +50,9 @@
         <activity android:name=".user.event.EventsPage" />
         <activity android:name=".user.concierge.ConciergeRequestForm"/>
         <activity android:name=".user.concierge.ConciergeRequestsPage" />
+        <activity android:name=".user.announcement.AnnouncementsPage" />
+        <activity android:name=".user.announcement.AnnouncementForm" />
+        <activity android:name=".user.concierge.IndividualConciergePage" />
 
         <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>

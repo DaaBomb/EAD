@@ -59,7 +59,7 @@
             android:layout_marginTop="44dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/karla"
-            android:text="View announcements"
+            android:text="Announcements"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
             android:id="@+id/btn_concierge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="96dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/karla"
             android:text="Concierge"
@@ -94,7 +94,7 @@
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView

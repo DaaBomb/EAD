@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -29,7 +28,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class ConciergeRequestsPage extends BaseNav {
+public class ConciergeRequestsPage extends BaseNav implements ConciergeRecyclerViewAdapter.OnConciergeListener{
 
     RecyclerView recyclerView;
     ConciergeRecyclerViewAdapter recyclerViewAdapter;
@@ -119,7 +118,7 @@ public class ConciergeRequestsPage extends BaseNav {
     }
 
     private void initAdapter() {
-        recyclerViewAdapter = new ConciergeRecyclerViewAdapter(conciergeList);
+        recyclerViewAdapter = new ConciergeRecyclerViewAdapter(conciergeList, this);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -170,7 +169,6 @@ public class ConciergeRequestsPage extends BaseNav {
         if (userObj.getProfession() == null) {
             compositeDisposable.add(iMyService.getFlatConcierge(societyId, flag, userObj.getAddress().getBlockname(), userObj.getAddress().getFlatnum())
                     .subscribeOn(Schedulers.io())
-                    .delay(3, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<String>() {
                         @Override
@@ -197,7 +195,6 @@ public class ConciergeRequestsPage extends BaseNav {
         } else {
             compositeDisposable.add(iMyService.getSocietyConcierge(societyId, flag)
                     .subscribeOn(Schedulers.io())
-                    .delay(3, TimeUnit.SECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableObserver<String>() {
                         @Override
@@ -223,5 +220,14 @@ public class ConciergeRequestsPage extends BaseNav {
             );
         }
         isLoading = false;
+    }
+
+    @Override
+    public void onConciergeClick(int position) {
+        Intent i = new Intent(ConciergeRequestsPage.this, IndividualConciergePage.class);
+        Bundle extras = new Bundle();
+        extras.putString("conciergeDetails",gson.toJson(conciergeList.get(position)));
+        i.putExtras(extras);
+        startActivity(i);
     }
 }

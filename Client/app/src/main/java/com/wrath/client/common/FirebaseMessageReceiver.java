@@ -77,6 +77,8 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
                 showNotification(remoteMessage.getData().get("title"), message, notificationDetails);
             } else if (remoteMessage.getData().get("title").equals("concierge") && RulesUtil.isManager(userObj)) {
                 showNotification("Concierge Request", "Residents of " + notificationDetails.getConcierge().getUser().getAddress().getBlockname() + " - " + notificationDetails.getConcierge().getUser().getAddress().getFlatnum(), notificationDetails);
+            } else if (remoteMessage.getData().get("title").equals("announcement")) {
+                showNotification("Announcement", "There is a new Announcement", notificationDetails);
             }
 
         }

@@ -21,10 +21,12 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     public List<Concierge> conciergeList;
+    public ConciergeRecyclerViewAdapter.OnConciergeListener mOnConciergeListener;
 
 
-    public ConciergeRecyclerViewAdapter(List<Concierge> conciergeList) {
+    public ConciergeRecyclerViewAdapter(List<Concierge> conciergeList, ConciergeRecyclerViewAdapter.OnConciergeListener onConciergeListener) {
         this.conciergeList = conciergeList;
+        this.mOnConciergeListener = onConciergeListener;
     }
 
     @NonNull
@@ -71,7 +73,7 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
         TextView flatNumber, requirement, details, time, date, status;
 
         public ItemViewHolder(@NonNull View itemView) {
-            super(itemView);
+            super(itemView, mOnConciergeListener);
             flatNumber = itemView.findViewById(R.id.event_title2);
             requirement = itemView.findViewById(R.id.event_title);
             details = itemView.findViewById(R.id.event_details);
@@ -86,7 +88,7 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
         ProgressBar progressBar;
 
         public LoadingViewHolder(@NonNull View itemView) {
-            super(itemView);
+            super(itemView, mOnConciergeListener);
             progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
@@ -103,7 +105,11 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
         viewHolder.time.setText(item.getTime_needed());
         String status;
         if (item.isResponded()) {
-            status = item.isApproved() ? "Approved" : "Declined";
+            if (item.isResident_responded()) {
+                status = item.isDone() ? "Done" : "Not done";
+            } else {
+                status = item.isApproved() ? "Approved" : "Declined";
+            }
         } else {
             status = "Pending...";
         }
@@ -114,11 +120,23 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
         viewHolder.date.setText(date);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public ViewHolder(@NonNull View itemView) {
+        ConciergeRecyclerViewAdapter.OnConciergeListener onConciergeListener;
+
+        public ViewHolder(@NonNull View itemView, ConciergeRecyclerViewAdapter.OnConciergeListener onConciergeListener) {
             super(itemView);
+            this.onConciergeListener = onConciergeListener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            onConciergeListener.onConciergeClick(getPosition());
+        }
+    }
+
+    public interface OnConciergeListener {
+        void onConciergeClick(int position);
     }
 }
