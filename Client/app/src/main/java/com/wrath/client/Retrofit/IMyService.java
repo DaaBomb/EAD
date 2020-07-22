@@ -1,17 +1,12 @@
 package com.wrath.client.Retrofit;
 
 
-import com.wrath.client.dto.UserResidence;
-
-import org.json.JSONObject;
-
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -74,5 +69,23 @@ public interface IMyService {
 
     @GET("api/programmes/getEvents/")
     Observable<String> getEvents(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @POST("api/programmes/register/")
+    Observable<String> registerEvent(@Body RequestBody eventRegisterRequest);
+
+    @GET("api/society/societybyid/")
+    Observable<String> getSocietyName(@Query("society_id") String society_id);
+
+    @POST("api/users/panic/")
+    Observable<String> engagePanicSequence(@Body RequestBody request);
+
+    @POST("api/concierge/")
+    Observable<String> addConcierge(@Body RequestBody concierge);
+
+    @GET("api/concierge/getBySociety/")
+    Observable<String> getSocietyConcierge(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @GET("api/concierge/getByFlat/")
+    Observable<String> getFlatConcierge(@Query("society_id") String society_id,@Query("flag") int flag,@Query("blockname") String blockname,@Query("flatnum") String flatnum);
 
 }

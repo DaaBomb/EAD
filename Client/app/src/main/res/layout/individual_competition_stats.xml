@@ -18,6 +18,7 @@
             >
 
             <Button
+                android:id="@+id/participants_count_btn"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

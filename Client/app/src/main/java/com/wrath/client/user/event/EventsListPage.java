@@ -181,7 +181,11 @@ public class EventsListPage extends BaseNav implements EventRecyclerViewAdapter.
 
     @Override
     public void onEventClick(int position) {
-        Intent i = new Intent(EventsListPage.this,EventsPage.class);
+        Intent i;
+        if(userObj.getProfession()==null)
+            i = new Intent(EventsListPage.this,EventsPage.class);
+        else
+            i = new Intent(EventsListPage.this,EventStatsPage.class);
         Bundle extras = new Bundle();
         extras.putString("eventDetails",gson.toJson(eventDetailsList.get(position)));
         i.putExtras(extras);

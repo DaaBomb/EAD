@@ -3,7 +3,6 @@ package com.wrath.client.common;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,13 +25,12 @@ import com.wrath.client.MainActivity;
 import com.wrath.client.R;
 import com.wrath.client.Retrofit.IMyService;
 import com.wrath.client.Retrofit.RetrofitClient;
-import com.wrath.client.dto.BaseResponse;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.PermissionRequest;
 import com.wrath.client.dto.PermissionResponse;
 import com.wrath.client.dto.User;
-
-import org.json.JSONObject;
+import com.wrath.client.user.Leadpage;
+import com.wrath.client.user.ProfilePage;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -71,7 +68,6 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Retrofit retrofitClient = RetrofitClient.getInstance();
         iMyService = retrofitClient.create(IMyService.class);
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
@@ -84,7 +80,6 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                 displayAlertDialog(intent);
             }
         };
-
         displayAlertDialog(getIntent());
     }
 
@@ -137,8 +132,7 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else{
+        } else {
             finish();
         }
     }
@@ -150,6 +144,12 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                 sharedPreferences.edit().clear().apply();
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
+            case R.id.nav_profile:
+                startActivity(new Intent(this, ProfilePage.class));
+                return true;
+            case R.id.nav_home:
+                startActivity(new Intent(this, Leadpage.class));
+                return true;
             default:
                 return false;
         }
@@ -160,8 +160,8 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         if (extras != null && extras.getString("title") != null && extras.getString("message") != null) {
             String title = extras.getString("title");
             String message = extras.getString("message");
-            final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"),NotificationDetails.class);
-            if(userObj.getProfession()==null) {
+            final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"), NotificationDetails.class);
+            if (!"panic".equalsIgnoreCase(title) && userObj.getProfession() == null) {
                 final View customLayout = getLayoutInflater().inflate(R.layout.notification_dialog, null);
                 builder.setTitle(title).setView(customLayout);
                 TextView visitor_name = customLayout.findViewById(R.id.visitor_name);
@@ -182,32 +182,30 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                         alertDialog.dismiss();
                     }
                 });
-                alertDialog= builder.create();
+                alertDialog = builder.create();
                 alertDialog.show();
 
-            }
-            else{
+            } else {
                 builder.setTitle(title).setMessage(message).create().show();
             }
         }
     }
 
-    public void givePermission(String _id, Boolean confirmed){
+    public void givePermission(String _id, Boolean confirmed) {
         PermissionRequest permissionRequest = new PermissionRequest(_id, confirmed);
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"),gson.toJson(permissionRequest));
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), gson.toJson(permissionRequest));
         compositeDisposable.add(iMyService.sendPermission(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
-                       PermissionResponse res=gson.fromJson(response, PermissionResponse.class);
-                       if(res.getMsg().equals("successful")){
-                           //Do something
-                       }
+                        PermissionResponse res = gson.fromJson(response, PermissionResponse.class);
+                        if (res.getMsg().equals("successful")) {
+                            //Do something
+                        }
                     }
                 })
         );
-
     }
 }

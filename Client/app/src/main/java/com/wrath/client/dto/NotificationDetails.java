@@ -12,8 +12,13 @@ public class NotificationDetails {
     private String _id;
     private Boolean responded;
     private Date date_created;
+    private String user_id;
+    private Concierge concierge;
 
-    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created) {
+    public NotificationDetails() {
+    }
+
+    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created, String user_id, Concierge concierge) {
         this.visitor_name = visitor_name;
         this.block_visiting = block_visiting;
         this.flatnum_visiting = flatnum_visiting;
@@ -23,25 +28,8 @@ public class NotificationDetails {
         this._id = _id;
         this.responded = responded;
         this.date_created = date_created;
-    }
-
-    public NotificationDetails() {
-    }
-
-    public Boolean getResponded() {
-        return responded;
-    }
-
-    public void setResponded(Boolean responded) {
-        this.responded = responded;
-    }
-
-    public Date getDate_created() {
-        return date_created;
-    }
-
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
+        this.user_id = user_id;
+        this.concierge = concierge;
     }
 
     public String getVisitor_name() {
@@ -98,5 +86,37 @@ public class NotificationDetails {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public Boolean getResponded() {
+        return responded;
+    }
+
+    public void setResponded(Boolean responded) {
+        this.responded = responded;
+    }
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public Concierge getConcierge() {
+        return concierge;
+    }
+
+    public void setConcierge(Concierge concierge) {
+        this.concierge = concierge;
     }
 }

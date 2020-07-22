@@ -1,5 +1,6 @@
 package com.wrath.client.user.event;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -21,6 +22,7 @@ import java.util.Date;
 
 public class EventFormPage extends BaseNav {
 
+    String dateSelected;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,13 @@ public class EventFormPage extends BaseNav {
         final TextInputEditText eventName = (TextInputEditText) findViewById(R.id.textInputEditText2);
         final TextInputEditText eventDesc = (TextInputEditText) findViewById(R.id.textInputEditText);
         final CalendarView eventDate = (CalendarView) findViewById(R.id.calendarView);
+        dateSelected = new Date(eventDate.getDate()).toString();
+        eventDate.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                dateSelected = dayOfMonth + "/" + month + "/" + year;
+            }
+        });
         final TimePicker eventTime = (TimePicker) findViewById(R.id.timePicker);
         Button next = (Button) findViewById(R.id.button3);
         next.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +50,7 @@ public class EventFormPage extends BaseNav {
                 Bundle bundle = new Bundle();
                 bundle.putString("eventName", eventName.getText().toString());
                 bundle.putString("eventDesc", eventDesc.getText().toString());
-                bundle.putString("eventDate", new Date(eventDate.getDate()).toString());
+                bundle.putString("eventDate", dateSelected);
                 bundle.putString("eventTime", eventTime.getHour()+":"+eventTime.getMinute());
                 i.putExtras(bundle);
                 startActivity(i);

@@ -14,7 +14,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".user.event.CompetitonRecyclerViewAdapter"></activity>
+        <activity android:name=".user.ProfilePage"></activity>
+        <activity android:name=".user.event.CompetitionStatsRecyclerViewAdapter" />
+        <activity android:name=".user.event.EventStatsPage" />
+        <activity android:name=".user.event.CompetitonRecyclerViewAdapter" />
         <activity android:name=".user.event.EventFormPage2" />
         <activity android:name=".user.event.EventFormPage" />
         <activity android:name=".user.event.EventsListPage" />
@@ -45,6 +48,8 @@
         <activity android:name=".register.SelectCommunity" />
         <activity android:name=".security.SecurityPage" />
         <activity android:name=".user.event.EventsPage" />
+        <activity android:name=".user.concierge.ConciergeRequestForm"/>
+        <activity android:name=".user.concierge.ConciergeRequestsPage" />
 
         <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>

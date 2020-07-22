@@ -23,6 +23,7 @@ import com.wrath.client.MainActivity;
 import com.wrath.client.R;
 import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.User;
+import com.wrath.client.util.RulesUtil;
 
 import java.util.Random;
 
@@ -49,22 +50,40 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
         String messageString = remoteMessage.getData().get("message");
         NotificationDetails notificationDetails = gson.fromJson(messageString, NotificationDetails.class);
         if (remoteMessage.getData().size() > 0) {
-            if (    remoteMessage.getData().get("title").equals("Security approval") &&
+            if (remoteMessage.getData().get("title").equals("Security approval") &&
                     notificationDetails.getSociety_id().equals(userObj.getAddress().getSociety_id()) &&
                     notificationDetails.getBlock_visiting().equals(userObj.getAddress().getBlockname()) &&
                     notificationDetails.getFlatnum_visiting().equals(userObj.getAddress().getFlatnum()))
-                    showNotification(remoteMessage.getData().get("title"), notificationDetails.getVisitor_name() + " is requesting your approval" +" ("+ notificationDetails.getBlock_visiting() +"-"+notificationDetails.getFlatnum_visiting()+")",notificationDetails);
-            else if(remoteMessage.getData().get("title").equals("Resident approval") &&
+                showNotification(remoteMessage.getData().get("title"), notificationDetails.getVisitor_name() + " is requesting your approval" + " (" + notificationDetails.getBlock_visiting() + "-" + notificationDetails.getFlatnum_visiting() + ")", notificationDetails);
+            else if (remoteMessage.getData().get("title").equals("Resident approval") &&
                     notificationDetails.getSociety_id().equals(userObj.getAddress().getSociety_id()) &&
-                    userObj.getProfession()!=null &&
+                    userObj.getProfession() != null &&
                     userObj.getProfession().equals("security")
             )
-                showNotification(remoteMessage.getData().get("title"),notificationDetails.getVisitor_name() + (notificationDetails.getConfirmed()?" is allowed to go inside":" is not allowed to go inside"),notificationDetails);
+                showNotification(remoteMessage.getData().get("title"), notificationDetails.getVisitor_name() + (notificationDetails.getConfirmed() ? " is allowed to go inside" : " is not allowed to go inside"), notificationDetails);
+            else if (remoteMessage.getData().get("title").equals("panic") &&
+                    !notificationDetails.getUser_id().equalsIgnoreCase(userObj.get_id()) &&
+                    notificationDetails.getSociety_id().equalsIgnoreCase(userObj.getAddress().getSociety_id()) &&
+                    (notificationDetails.getBlock_visiting() == null || userObj.getProfession() != null || notificationDetails.getBlock_visiting().equalsIgnoreCase(userObj.getAddress().getBlockname()))) {
+                Panic panic = new Panic();
+                panic.initiatePanic(this);
+                String message = "";
+                if (notificationDetails.getBlock_visiting() == null) {
+                    message += "Staff";
+                } else {
+                    message += ("Residents of " + notificationDetails.getBlock_visiting() + " - " + notificationDetails.getFlatnum_visiting());
+                }
+                message += " raised an alarm!";
+                showNotification(remoteMessage.getData().get("title"), message, notificationDetails);
+            } else if (remoteMessage.getData().get("title").equals("concierge") && RulesUtil.isManager(userObj)) {
+                showNotification("Concierge Request", "Residents of " + notificationDetails.getConcierge().getUser().getAddress().getBlockname() + " - " + notificationDetails.getConcierge().getUser().getAddress().getFlatnum(), notificationDetails);
+            }
+
         }
 
         //handle when receive notification
         if (remoteMessage.getNotification() != null) {
-            showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(),notificationDetails);
+            showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), notificationDetails);
         }
     }
 
