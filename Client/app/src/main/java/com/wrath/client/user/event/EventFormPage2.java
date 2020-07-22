@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -38,6 +37,7 @@ public class EventFormPage2 extends BaseNav implements ProgrammeRecyclerViewAdap
     ProgrammeRecyclerViewAdapter recyclerViewAdapter;
     ArrayList<Programme> programmeList = new ArrayList<>();
     Switch food_choice;
+
     public EventFormPage2() {
         // Required empty public constructor
     }
@@ -50,7 +50,7 @@ public class EventFormPage2 extends BaseNav implements ProgrammeRecyclerViewAdap
         setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
         setNavigationView((NavigationView) findViewById(R.id.nav_view));
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
-        food_choice=(Switch) findViewById(R.id.switch2);
+        food_choice = (Switch) findViewById(R.id.switch2);
         ImageButton addProgramme = (ImageButton) findViewById(R.id.button2);
         Button next = (Button) findViewById(R.id.button3);
         final TextInputEditText competitionName = (TextInputEditText) findViewById(R.id.addCompetitionName);

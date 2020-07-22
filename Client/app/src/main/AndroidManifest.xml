@@ -48,6 +48,8 @@
         <activity android:name=".register.SelectCommunity" />
         <activity android:name=".security.SecurityPage" />
         <activity android:name=".user.event.EventsPage" />
+        <activity android:name=".user.concierge.ConciergeRequestForm"/>
+        <activity android:name=".user.concierge.ConciergeRequestsPage" />
 
         <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>

@@ -1,11 +1,11 @@
 package com.wrath.client.user;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -13,18 +13,25 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.wrath.client.R;
 import com.wrath.client.common.BaseNav;
+import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.security.SecurityRequestPage;
+import com.wrath.client.user.concierge.ConciergeRequestForm;
+import com.wrath.client.user.concierge.ConciergeRequestsPage;
 import com.wrath.client.user.event.EventsListPage;
 import com.wrath.client.user.forum.ForumPage;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class Leadpage extends BaseNav {
 
     Button btn_forum;
-
     Button btn_event;
-
-
     Button btn_gate;
+    Button btn_concierge;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,17 +44,15 @@ public class Leadpage extends BaseNav {
         initialize();
 
         btn_forum = (Button) findViewById(R.id.btn_forum);
-
         btn_event = (Button) findViewById(R.id.btn_event);
-
         btn_gate = (Button) findViewById(R.id.btn_gate);
+        btn_concierge = (Button) findViewById(R.id.btn_concierge);
 
         ImageButton panic = findViewById(R.id.panic);
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
         panic.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                mp.start();
+                activatePanicProtocol();
                 return false;
             }
         });
@@ -75,9 +80,46 @@ public class Leadpage extends BaseNav {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Leadpage.this, SecurityRequestPage.class);
-
                 startActivity(i);
             }
         });
+
+        btn_concierge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, ConciergeRequestsPage.class);
+                startActivity(i);
+            }
+        });
+
+
+    }
+
+    public void activatePanicProtocol() {
+        NotificationDetails notificationDetails = new NotificationDetails();
+        notificationDetails.setUser_id(userObj.get_id());
+        notificationDetails.setBlock_visiting(userObj.getAddress().getBlockname());
+        notificationDetails.setSociety_id(userObj.getAddress().getSociety_id());
+        notificationDetails.setFlatnum_visiting(userObj.getAddress().getFlatnum());
+        RequestBody request = RequestBody.create(MediaType.parse("application/json"), gson.toJson(notificationDetails));
+        compositeDisposable.add(iMyService.engagePanicSequence(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(Leadpage.this, "Successfully alerted panic situation", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(Leadpage.this, "Alerting panic failed", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                })
+        );
     }
 }
