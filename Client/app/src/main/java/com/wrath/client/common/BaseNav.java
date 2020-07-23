@@ -44,8 +44,8 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
 
     SharedPreferences sharedPreferences;
     BroadcastReceiver broadcastReceiver;
-    AlertDialog.Builder builder;
-    AlertDialog alertDialog;
+    public AlertDialog.Builder builder;
+    public AlertDialog alertDialog;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -155,13 +155,13 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
         }
     }
 
-    private void displayAlertDialog(Intent intent) {
+    public void displayAlertDialog(Intent intent) {
         Bundle extras = intent.getExtras();
         if (extras != null && extras.getString("title") != null && extras.getString("message") != null) {
             String title = extras.getString("title");
             String message = extras.getString("message");
             final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"), NotificationDetails.class);
-            if("announcement".equalsIgnoreCase(title)){}
+            if("announcement".equalsIgnoreCase(title) || "New Message".equalsIgnoreCase(title)){}
             else if (!"panic".equalsIgnoreCase(title) && userObj.getProfession() == null) {
                 final View customLayout = getLayoutInflater().inflate(R.layout.notification_dialog, null);
                 builder.setTitle(title).setView(customLayout);
