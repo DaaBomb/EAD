@@ -100,4 +100,15 @@ public interface IMyService {
     @POST("api/announcements/")
     Observable<String> addAnnouncement(@Body RequestBody announcement);
 
+    @POST("api/concierge/addcomment")
+    Observable<String> addCommentToConcierge(@Body RequestBody commentUser);
+
+    @POST("api/users/usersBySociety")
+    Observable<String> getResidentsInSociety(@Body RequestBody societyId);
+
+    @GET("api/chat/getMessages")
+    Observable<String> getMessages(@Query("from_id") String fromId, @Query("to_id") String toId);
+
+    @POST("api/chat")
+    Observable<String> sendMessage(@Body RequestBody request);
 }

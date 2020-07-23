@@ -1,6 +1,7 @@
 package com.wrath.client.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class Concierge {
     private String requirement;
@@ -18,11 +19,12 @@ public class Concierge {
     private String _id;
     private boolean resident_responded;
     private boolean done;
+    private List<Comment> comments;
 
     public Concierge() {
     }
 
-    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, boolean responded, boolean approved, String blockname, String flatnum, String society_id, String _id, boolean resident_responded, boolean done) {
+    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, boolean responded, boolean approved, String blockname, String flatnum, String society_id, String _id, boolean resident_responded, boolean done, List<Comment> comments) {
         this.requirement = requirement;
         this.details = details;
         this.user = user;
@@ -38,6 +40,7 @@ public class Concierge {
         this._id = _id;
         this.resident_responded = resident_responded;
         this.done = done;
+        this.comments = comments;
     }
 
     public String getRequirement() {
@@ -158,5 +161,13 @@ public class Concierge {
 
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

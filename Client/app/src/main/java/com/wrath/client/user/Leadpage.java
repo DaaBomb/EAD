@@ -19,6 +19,7 @@ import com.wrath.client.user.announcement.AnnouncementsPage;
 import com.wrath.client.user.concierge.ConciergeRequestsPage;
 import com.wrath.client.user.event.EventsListPage;
 import com.wrath.client.user.forum.ForumPage;
+import com.wrath.client.user.residentBook.ResidentBookPage;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -33,6 +34,7 @@ public class Leadpage extends BaseNav {
     Button btn_gate;
     Button btn_concierge;
     Button btn_announcements;
+    Button btn_residentBook;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class Leadpage extends BaseNav {
         btn_gate = (Button) findViewById(R.id.btn_gate);
         btn_concierge = (Button) findViewById(R.id.btn_concierge);
         btn_announcements = (Button) findViewById(R.id.btn_announcements);
+        btn_residentBook = (Button) findViewById(R.id.btn_residents);
 
         ImageButton panic = findViewById(R.id.panic);
         panic.setOnLongClickListener(new View.OnLongClickListener() {
@@ -98,6 +101,14 @@ public class Leadpage extends BaseNav {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Leadpage.this, AnnouncementsPage.class);
+                startActivity(i);
+            }
+        });
+
+        btn_residentBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Leadpage.this, ResidentBookPage.class);
                 startActivity(i);
             }
         });
