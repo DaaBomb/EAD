@@ -50,8 +50,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/karla"
         android:text="Flat Number"
@@ -115,6 +115,19 @@
                         app:layout_constraintHorizontal_bias="0.069"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/contactnumber" />
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/editemail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:visibility="invisible"
+                        android:text="Email Address"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.069"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactnumber" />
 
                     <TextView
                         android:id="@+id/contactnumber"
@@ -123,6 +136,19 @@
                         android:layout_marginTop="16dp"
                         android:text="Contact number"
                         android:textSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.073"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/editcontactnumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Contact number"
+                        android:textSize="16dp"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.073"
                         app:layout_constraintStart_toStartOf="parent"
@@ -157,57 +183,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textView25"
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="NAME"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.049"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider9" />
-
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="RELATION"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-                    <TextView
-                        android:id="@+id/textView27"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="52dp"
-                        android:layout_marginLeft="52dp"
-                        android:layout_marginTop="16dp"
-                        android:text="NAME"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="16dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView25"
-                        app:layout_constraintTop_toBottomOf="@+id/divider9" />
-
-                    <TextView
-                        android:id="@+id/textView28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginTop="16dp"
-                        android:text="RELATION"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="16dp"
-                        app:layout_constraintStart_toEndOf="@+id/textView26"
-                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                     <TextView
                         android:id="@+id/textView23"
@@ -263,34 +247,31 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Sports"
+            android:text="Inerests"
             android:textColor="@color/myTextColor"
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/sport1"
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SPORT 1"
-                        android:textColor="?android:attr/textColorSecondary"
-                        android:textSize="16dp"
-                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.053"
+                        app:layout_constraintHorizontal_bias="0.049"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_sport" />
 
                     <View
-            android:id="@+id/divider_sport"
-            android:layout_width="80dp"
-            android:layout_height="2dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sport" />
+                        android:id="@+id/divider_sport"
+                        android:layout_width="80dp"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sport" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -302,9 +283,23 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:text="Edit"
+        android:text="save"
+        android:visibility="invisible"
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/rounded_button"
+        android:text="Edit"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
