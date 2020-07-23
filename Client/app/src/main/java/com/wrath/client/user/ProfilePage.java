@@ -1,6 +1,8 @@
 package com.wrath.client.user;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class ProfilePage extends BaseNav {
         else
             flat.setText("");
         email.setText(userObj.getEmail());
+
     }
 
     private void getSocietyName() {

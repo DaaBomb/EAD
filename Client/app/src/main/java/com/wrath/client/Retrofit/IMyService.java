@@ -100,4 +100,6 @@ public interface IMyService {
     @POST("api/announcements/")
     Observable<String> addAnnouncement(@Body RequestBody announcement);
 
+    @POST("api/concierge/addcomment")
+    Observable<String> addCommentToConcierge(@Body RequestBody commentUser);
 }
