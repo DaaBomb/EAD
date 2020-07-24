@@ -14,11 +14,12 @@ public class NotificationDetails {
     private Date date_created;
     private String user_id;
     private Concierge concierge;
+    private ChatMessage chat;
 
     public NotificationDetails() {
     }
 
-    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created, String user_id, Concierge concierge) {
+    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created, String user_id, Concierge concierge, ChatMessage chat) {
         this.visitor_name = visitor_name;
         this.block_visiting = block_visiting;
         this.flatnum_visiting = flatnum_visiting;
@@ -30,6 +31,7 @@ public class NotificationDetails {
         this.date_created = date_created;
         this.user_id = user_id;
         this.concierge = concierge;
+        this.chat = chat;
     }
 
     public String getVisitor_name() {
@@ -118,5 +120,13 @@ public class NotificationDetails {
 
     public void setConcierge(Concierge concierge) {
         this.concierge = concierge;
+    }
+
+    public ChatMessage getChat() {
+        return chat;
+    }
+
+    public void setChat(ChatMessage chat) {
+        this.chat = chat;
     }
 }
