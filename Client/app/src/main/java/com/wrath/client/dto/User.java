@@ -1,5 +1,11 @@
 package com.wrath.client.dto;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.util.Objects;
+
 public class User {
     private UserAddress address;
     private boolean isResident;
@@ -96,5 +102,17 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        return this._id.equals(((User) o)._id);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, isResident, profession, confirmed, _id, name, email, approved, token);
     }
 }
