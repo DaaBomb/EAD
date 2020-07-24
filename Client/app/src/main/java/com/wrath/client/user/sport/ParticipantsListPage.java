@@ -3,6 +3,7 @@ package com.wrath.client.user.sport;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -25,6 +26,7 @@ public class ParticipantsListPage extends BaseNav implements ParticipantRecycler
     RecyclerView recyclerView;
     ParticipantRecyclerViewAdapter participantRecyclerViewAdapter;
     List<User> usersList = new ArrayList<>();
+    List<User> participantsList = new ArrayList<>();
     Sport sport;
 
     @Override
@@ -40,8 +42,28 @@ public class ParticipantsListPage extends BaseNav implements ParticipantRecycler
         Bundle bundle = getIntent().getExtras();
         sport = gson.fromJson(bundle.getString("sport"), Sport.class);
         usersList.addAll(sport.getParticipants());
+        participantsList.addAll(sport.getParticipants());
 
         recyclerView = findViewById(R.id.recyclerView);
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                usersList.clear();
+                for(User participant: participantsList) {
+                    if(participant.getName().contains(newText)) {
+                        usersList.add(participant);
+                    }
+                }
+                participantRecyclerViewAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
 
         initAdapter();
         initScrollListener();
