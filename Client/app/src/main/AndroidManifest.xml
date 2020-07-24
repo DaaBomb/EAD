@@ -55,6 +55,8 @@
         <activity android:name=".user.concierge.IndividualConciergePage" />
         <activity android:name=".user.residentBook.ResidentBookPage" />
         <activity android:name=".user.chat.ChatActivity" />
+        <activity android:name=".user.sport.SportsListPage" />
+        <activity android:name=".user.sport.SportRequestForm" />
 
         <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>
