@@ -2,6 +2,7 @@ package com.wrath.client.user.sport;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.BulletSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -171,7 +172,7 @@ public class SportsListPage extends BaseNav implements SportsRecyclerViewAdapter
     }
 
     @Override
-    public void onSportClick(int position) {
+    public void onParticipateClick(int position) {
         RegisterSportRequest registerSportRequest = new RegisterSportRequest();
         registerSportRequest.set_id(sportList.get(position).get_id());
         registerSportRequest.setUser(userObj);
@@ -197,6 +198,14 @@ public class SportsListPage extends BaseNav implements SportsRecyclerViewAdapter
                     }
                 })
         );
+    }
 
+    @Override
+    public void onSportClick(int position) {
+        Intent i = new Intent(SportsListPage.this, ParticipantsListPage.class);
+        Bundle extras = new Bundle();
+        extras.putString("sport", gson.toJson(sportList.get(position)));
+        i.putExtras(extras);
+        startActivity(i);
     }
 }

@@ -81,6 +81,8 @@ public class FirebaseMessageReceiver extends FirebaseMessagingService {
                 showNotification("Announcement", "There is a new Announcement", notificationDetails);
             } else if (remoteMessage.getData().get("title").equals("chat") && notificationDetails.getChat().getTo().get_id().equals(userObj.get_id())) {
                 showNotification("New Message", "There is a new message from " + notificationDetails.getChat().getFrom().getName(), notificationDetails);
+            } else if (remoteMessage.getData().get("title").equals("sport") && userObj.getInterests() != null && userObj.getInterests().contains(notificationDetails.getSport().getSport()) && !notificationDetails.getSport().getCreated_by().get_id().equalsIgnoreCase(userObj.get_id())) {
+                showNotification("Interest", "An activity of your interest is planned. Check it out.", notificationDetails);
             }
 
         }
