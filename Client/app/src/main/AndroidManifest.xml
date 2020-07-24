@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".user.ProfilePage"></activity>
+        <activity android:name=".user.profile.ProfilePage"></activity>
         <activity android:name=".user.event.CompetitionStatsRecyclerViewAdapter" />
         <activity android:name=".user.event.EventStatsPage" />
         <activity android:name=".user.event.CompetitonRecyclerViewAdapter" />
@@ -57,6 +57,9 @@
         <activity android:name=".user.chat.ChatActivity" />
         <activity android:name=".user.sport.SportsListPage" />
         <activity android:name=".user.sport.SportRequestForm" />
+        <activity android:name=".user.sport.ParticipantsListPage" />
+        <activity android:name=".user.amenities.AddAmenitiesPage" />
+        <activity android:name=".user.profile.EditProfilePage" />
 
         <service android:name=".common.FirebaseMessageReceiver">
             <intent-filter>

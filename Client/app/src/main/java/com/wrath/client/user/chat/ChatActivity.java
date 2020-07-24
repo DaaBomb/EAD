@@ -66,6 +66,7 @@ public class ChatActivity extends BaseNav {
             public void onClick(View v) {
                 String msg = message.getText().toString();
                 sendMessage(msg);
+                message.setText("");
             }
         });
     }
