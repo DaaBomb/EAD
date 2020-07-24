@@ -21,6 +21,41 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="456dp"
+                android:layout_marginEnd="336dp"
+                android:layout_marginRight="336dp"
+                android:alpha="0.3"
+                android:src="@drawable/hex1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView21"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="360dp"
+                android:layout_marginLeft="360dp"
+                android:layout_marginTop="424dp"
+                android:alpha="0.5"
+                android:rotation="45"
+                android:src="@drawable/hex1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:alpha="0.5"
+                android:src="@drawable/hex1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -31,6 +66,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/karla"
                 android:text="Event Name"
+                android:textStyle="bold"
                 android:textColor="@color/myTextColor"
                 android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +120,7 @@
                 android:fontFamily="@font/karla"
                 android:padding="10dp"
                 android:text="Veg"
-                android:textColor="#00b300"
+                android:textColor="@color/myTextColor"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -99,7 +135,7 @@
                 android:fontFamily="@font/karla"
                 android:padding="10dp"
                 android:text="Non-Veg"
-                android:textColor="#e00000"
+                android:textColor="@color/myTextColor"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.389"

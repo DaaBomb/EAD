@@ -28,19 +28,21 @@
 
                 <TextView
                     android:id="@+id/tvItem"
-                    android:layout_width="270dp"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/karla"
+                    android:textStyle="bold"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/date_topic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/karla"
                     android:layout_gravity="center_vertical"
                     android:text="9:10pm, 7th April 2020"
+                    android:layout_marginLeft="25dp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textSize="12dp"
                     android:textColor="?android:attr/textColorSecondary"/>

@@ -7,27 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".register.RegisterStaff"
     android:orientation="vertical">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorPrimary">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select your position"
-            android:fontFamily="@font/karla"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:textColor="@color/colorAccent"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_vertical"
-            />
-    </FrameLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/karla"
+        android:text="Select your position"
+        android:textColor="@color/myTextColor"
+        android:textSize="36dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:alpha="0.5"
+        android:rotation="45"
+        android:src="@drawable/hex1" />
+
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="326dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginVertical="60dp"
         android:orientation="vertical"
         android:padding="45dp">
 
@@ -43,6 +52,7 @@
                 android:fontFamily="@font/karla"
                 android:textStyle="bold"
                 android:buttonTint="#000000"
+                android:layout_marginVertical="15dp"
                 android:checked="true"
                 android:textSize="20dp"
                 android:text="Manager"
@@ -50,6 +60,7 @@
             <RadioButton android:id="@+id/staff_sec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
                 android:buttonTint="#000000"
                 android:fontFamily="@font/karla"
                 android:textSize="20dp"
@@ -77,6 +88,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="178dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="bottom"
             android:src="@drawable/swarmstaff" />
     </FrameLayout>
