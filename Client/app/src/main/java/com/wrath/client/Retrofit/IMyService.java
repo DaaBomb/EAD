@@ -121,5 +121,7 @@ public interface IMyService {
     @POST("api/sports/register/")
     Observable<String> registerForSport(@Body RequestBody request);
 
+    @POST("api/users/usersinsameflat/")
+    Observable<String> getResidentsInSameFlat(@Body RequestBody request);
 
 }

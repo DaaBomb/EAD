@@ -30,7 +30,7 @@ import com.wrath.client.dto.PermissionRequest;
 import com.wrath.client.dto.PermissionResponse;
 import com.wrath.client.dto.User;
 import com.wrath.client.user.Leadpage;
-import com.wrath.client.user.ProfilePage;
+import com.wrath.client.user.profile.ProfilePage;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -145,7 +145,11 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(new Intent(this, MainActivity.class));
                 return true;
             case R.id.nav_profile:
-                startActivity(new Intent(this, ProfilePage.class));
+                Intent i = new Intent(this, ProfilePage.class);
+                Bundle extras = new Bundle();
+                extras.putString("userProfile", user);
+                i.putExtras(extras);
+                startActivity(i);
                 return true;
             case R.id.nav_home:
                 startActivity(new Intent(this, Leadpage.class));
