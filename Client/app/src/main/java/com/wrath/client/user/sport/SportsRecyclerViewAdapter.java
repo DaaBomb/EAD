@@ -129,18 +129,24 @@ public class SportsRecyclerViewAdapter extends RecyclerView.Adapter<SportsRecycl
         public ViewHolder(@NonNull View itemView, OnSportListener onSportListener) {
             super(itemView);
             this.onSportListener = onSportListener;
-            Button participate = itemView.findViewById(R.id.participate_btn);
-            if (participate != null)
-                participate.setOnClickListener(this);
+            itemView.setOnClickListener(this);
+            Button participateBtn = itemView.findViewById(R.id.participate_btn);
+            if (participateBtn != null)
+                participateBtn.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            onSportListener.onSportClick(getPosition());
+            if (v.getId() == R.id.participate_btn)
+                onSportListener.onParticipateClick(getPosition());
+            else
+                onSportListener.onSportClick(getPosition());
         }
     }
 
     public interface OnSportListener {
         void onSportClick(int position);
+
+        void onParticipateClick(int position);
     }
 }

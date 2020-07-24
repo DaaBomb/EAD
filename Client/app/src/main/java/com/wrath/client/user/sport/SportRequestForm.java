@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,15 +21,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.wrath.client.R;
 import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.AddSportRequest;
-import com.wrath.client.dto.Concierge;
-import com.wrath.client.dto.Sport;
-import com.wrath.client.user.concierge.ConciergeRequestsPage;
+import com.wrath.client.dto.AmenetiesResponse;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -55,16 +49,8 @@ public class SportRequestForm extends BaseNav {
         final TextView sportName = findViewById(R.id.textView15);
 
         final Spinner sport = findViewById(R.id.sportSpinner);
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Select a sport");
-        arrayList.add("Badminton");
-        arrayList.add("Basketball");
-        arrayList.add("Cricket");
-        arrayList.add("Football");
-        arrayList.add("Tennis");
-        arrayList.add("Swimming");
-        arrayList.add("Others");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getAmenitiesList());
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sport.setAdapter(arrayAdapter);
         sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -135,5 +121,31 @@ public class SportRequestForm extends BaseNav {
                     }
                 })
         );
+    }
+
+    public List<String> getAmenitiesList() {
+        final List<String> amenitiesList = new ArrayList<>();
+        compositeDisposable.add(iMyService.getAmeneties(userObj.getAddress().getSociety_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        AmenetiesResponse res = gson.fromJson(s, AmenetiesResponse.class);
+                        amenitiesList.addAll(res.getSociety().getAmeneties());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(SportRequestForm.this, "Unable to fetch amenities. Check network connectivity.", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                })
+        );
+        return amenitiesList;
     }
 }

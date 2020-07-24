@@ -17,9 +17,8 @@ import com.wrath.client.R;
 import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.SocietyNameDto;
 import com.wrath.client.dto.User;
-import com.wrath.client.dto.UserAddress;
 import com.wrath.client.dto.UsersResponse;
-import com.wrath.client.user.residentBook.ResidentBookRecyclerViewAdapter;
+import com.wrath.client.user.amenities.AmenityRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +29,14 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.OnProfileListener {
+public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.OnProfileListener, AmenityRecyclerViewAdapter.OnAmenityClickListener {
 
     User userProfile;
-    RecyclerView residentsRecyclerView;
+    RecyclerView residentsRecyclerView, interestsRecyclerView;
     ProfileRecyclerViewAdapter residentsRecyclerViewAdapter;
+    AmenityRecyclerViewAdapter amenitiesRecyclerViewAdapter;
     List<User> usersList = new ArrayList<>();
+    List<String> amenitiesList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,13 @@ public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.O
         userProfile = gson.fromJson(bundle.getString("userProfile"), User.class);
         getSocietyName();
         getResidents();
+        amenitiesList = userProfile.getInterests();
 
         TextView name = findViewById(R.id.textView);
         TextView flat = findViewById(R.id.textView2);
         TextView email = findViewById(R.id.email);
         residentsRecyclerView = findViewById(R.id.recyclerView);
+        interestsRecyclerView = findViewById(R.id.recyclerView2);
 
         name.setText(userProfile.getName());
         if (userProfile.getAddress().getBlockname() != null && userProfile.getAddress().getFlatnum() != null)
@@ -65,6 +68,7 @@ public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.O
         email.setText(userProfile.getEmail());
 
         initAdapter();
+        initScrollListener();
     }
 
     private void getSocietyName() {
@@ -120,6 +124,69 @@ public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.O
         residentsRecyclerViewAdapter = new ProfileRecyclerViewAdapter(usersList, this);
         residentsRecyclerView.setAdapter(residentsRecyclerViewAdapter);
         residentsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        amenitiesRecyclerViewAdapter = new AmenityRecyclerViewAdapter(amenitiesList, this);
+        interestsRecyclerView.setAdapter(amenitiesRecyclerViewAdapter);
+        interestsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    private void initScrollListener() {
+        residentsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        residentsRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
+
+        interestsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+
+        interestsRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
     @Override
@@ -129,5 +196,11 @@ public class ProfilePage extends BaseNav implements ProfileRecyclerViewAdapter.O
         extras.putString("userProfile", gson.toJson(usersList.get(position)));
         i.putExtras(extras);
         startActivity(i);
+    }
+
+    @Override
+    public void onAmenityClick(int position) {
+        amenitiesList.remove(position);
+        amenitiesRecyclerViewAdapter.notifyDataSetChanged();
     }
 }

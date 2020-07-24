@@ -29,8 +29,10 @@ import com.wrath.client.dto.NotificationDetails;
 import com.wrath.client.dto.PermissionRequest;
 import com.wrath.client.dto.PermissionResponse;
 import com.wrath.client.dto.User;
+import com.wrath.client.security.SecurityRequestPage;
 import com.wrath.client.user.Leadpage;
 import com.wrath.client.user.profile.ProfilePage;
+import com.wrath.client.util.RulesUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -152,7 +154,10 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(i);
                 return true;
             case R.id.nav_home:
-                startActivity(new Intent(this, Leadpage.class));
+                if (RulesUtil.isSecurity(userObj))
+                    startActivity(new Intent(this, SecurityRequestPage.class));
+                else
+                    startActivity(new Intent(this, Leadpage.class));
                 return true;
             default:
                 return false;
@@ -165,8 +170,8 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
             String title = extras.getString("title");
             String message = extras.getString("message");
             final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"), NotificationDetails.class);
-            if("announcement".equalsIgnoreCase(title) || "New Message".equalsIgnoreCase(title)){}
-            else if (!"panic".equalsIgnoreCase(title) && userObj.getProfession() == null) {
+            if ("announcement".equalsIgnoreCase(title) || "New Message".equalsIgnoreCase(title)) {
+            } else if (!"panic".equalsIgnoreCase(title) && userObj.getProfession() == null) {
                 final View customLayout = getLayoutInflater().inflate(R.layout.notification_dialog, null);
                 builder.setTitle(title).setView(customLayout);
                 TextView visitor_name = customLayout.findViewById(R.id.visitor_name);

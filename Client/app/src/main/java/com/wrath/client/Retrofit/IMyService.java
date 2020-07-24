@@ -124,4 +124,15 @@ public interface IMyService {
     @POST("api/users/usersinsameflat/")
     Observable<String> getResidentsInSameFlat(@Body RequestBody request);
 
+    @POST("api/society/addAmeneties/")
+    Observable<String> addAmeneties(@Body RequestBody request);
+
+    @GET("api/society/getAmeneties/")
+    Observable<String> getAmeneties(@Query("society_id") String society_id);
+
+    @POST("api/users/updateprofile/")
+    Observable<String> updateProfile(@Body RequestBody request);
+
+    @GET("api/users/userbyid/")
+    Observable<String> getUserById(@Query("_id") String _id);
 }

@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.List;
 import java.util.Objects;
 
 public class User {
@@ -16,11 +17,12 @@ public class User {
     private String email;
     private boolean approved;
     private String token;
+    private List<String> interests;
 
     public User() {
     }
 
-    public User(UserAddress address, boolean isResident, String profession, boolean confirmed, String _id, String name, String email, boolean approved, String token) {
+    public User(UserAddress address, boolean isResident, String profession, boolean confirmed, String _id, String name, String email, boolean approved, String token, List<String> interests) {
         this.address = address;
         this.isResident = isResident;
         this.profession = profession;
@@ -30,6 +32,19 @@ public class User {
         this.email = email;
         this.approved = approved;
         this.token = token;
+        this.interests = interests;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public List<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
     }
 
     public String getToken() {
