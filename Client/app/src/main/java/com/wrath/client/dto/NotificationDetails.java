@@ -15,11 +15,12 @@ public class NotificationDetails {
     private String user_id;
     private Concierge concierge;
     private ChatMessage chat;
+    private Sport sport;
 
     public NotificationDetails() {
     }
 
-    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created, String user_id, Concierge concierge, ChatMessage chat) {
+    public NotificationDetails(String visitor_name, String block_visiting, String flatnum_visiting, String society_id, Boolean confirmed, String purpose, String _id, Boolean responded, Date date_created, String user_id, Concierge concierge, ChatMessage chat, Sport sport) {
         this.visitor_name = visitor_name;
         this.block_visiting = block_visiting;
         this.flatnum_visiting = flatnum_visiting;
@@ -32,6 +33,7 @@ public class NotificationDetails {
         this.user_id = user_id;
         this.concierge = concierge;
         this.chat = chat;
+        this.sport = sport;
     }
 
     public String getVisitor_name() {
@@ -128,5 +130,13 @@ public class NotificationDetails {
 
     public void setChat(ChatMessage chat) {
         this.chat = chat;
+    }
+
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
     }
 }

@@ -2,18 +2,28 @@ package com.wrath.client.dto;
 
 import java.util.List;
 
-public class updateProfileRequest {
+public class UpdateProfileRequest {
+    private String _id;
     private String name;
     private String email;
     private List<String> interests;
 
-    public updateProfileRequest(String name, String email, List<String> interests) {
+    public UpdateProfileRequest(String _id, String name, String email, List<String> interests) {
+        this._id = _id;
         this.name = name;
         this.email = email;
         this.interests = interests;
     }
 
-    public updateProfileRequest() {
+    public UpdateProfileRequest() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {

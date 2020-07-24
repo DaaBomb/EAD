@@ -118,7 +118,7 @@ public class SportsRecyclerViewAdapter extends RecyclerView.Adapter<SportsRecycl
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(item.getDate_created());
         viewHolder.date.setText(date);
-        if (item.getParticipants().contains(user))
+        if (item.getParticipants().contains(user) || item.getNumberOfPlayers() - item.getParticipants().size() == 0)
             viewHolder.participate_btn.setVisibility(View.INVISIBLE);
     }
 

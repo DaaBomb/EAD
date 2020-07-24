@@ -70,7 +70,7 @@ public class AddAmenitiesPage extends BaseNav implements AmenityRecyclerViewAdap
     }
 
     private void initAdapter() {
-        recyclerViewAdapter = new AmenityRecyclerViewAdapter(amenitiesList, this);
+        recyclerViewAdapter = new AmenityRecyclerViewAdapter(amenitiesList, this, false);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

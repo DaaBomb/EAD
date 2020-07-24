@@ -36,6 +36,9 @@ import okhttp3.RequestBody;
 public class SportRequestForm extends BaseNav {
 
     Date dateSelected;
+    List<String> amenitiesList = new ArrayList<>();
+    Spinner sport;
+    TextView sportName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,24 +49,7 @@ public class SportRequestForm extends BaseNav {
         setNavigationView((NavigationView) findViewById(R.id.nav_view));
         initialize();
 
-        final TextView sportName = findViewById(R.id.textView15);
-
-        final Spinner sport = findViewById(R.id.sportSpinner);
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getAmenitiesList());
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sport.setAdapter(arrayAdapter);
-        sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String sportSelected = parent.getItemAtPosition(position).toString();
-                sportName.setText(sportSelected);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        sportName = findViewById(R.id.textView15);
 
         final TextInputEditText otherSports = findViewById(R.id.textInputEditText4);
         final TextInputEditText details = findViewById(R.id.textInputEditText5);
@@ -96,6 +82,7 @@ public class SportRequestForm extends BaseNav {
                 addSport(addSportRequest);
             }
         });
+        getAmenitiesList();
     }
 
     public void addSport(AddSportRequest sportRequest) {
@@ -123,8 +110,7 @@ public class SportRequestForm extends BaseNav {
         );
     }
 
-    public List<String> getAmenitiesList() {
-        final List<String> amenitiesList = new ArrayList<>();
+    public void getAmenitiesList() {
         compositeDisposable.add(iMyService.getAmeneties(userObj.getAddress().getSociety_id())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -133,6 +119,21 @@ public class SportRequestForm extends BaseNav {
                     public void onNext(String s) {
                         AmenetiesResponse res = gson.fromJson(s, AmenetiesResponse.class);
                         amenitiesList.addAll(res.getSociety().getAmeneties());
+                        sport = findViewById(R.id.sportSpinner);
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(SportRequestForm.this, android.R.layout.simple_spinner_item, amenitiesList);
+                        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        sport.setAdapter(arrayAdapter);
+                        sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                String sportSelected = amenitiesList.get(position);
+                                sportName.setText(sportSelected);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
                     }
 
                     @Override
@@ -146,6 +147,5 @@ public class SportRequestForm extends BaseNav {
                     }
                 })
         );
-        return amenitiesList;
     }
 }

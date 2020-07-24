@@ -133,6 +133,6 @@ public interface IMyService {
     @POST("api/users/updateprofile/")
     Observable<String> updateProfile(@Body RequestBody request);
 
-    @GET("api/users/userbyid/")
-    Observable<String> getUserById(@Query("_id") String _id);
+    @POST("api/users/userbyid/")
+    Observable<String> getUserById(@Body RequestBody request);
 }

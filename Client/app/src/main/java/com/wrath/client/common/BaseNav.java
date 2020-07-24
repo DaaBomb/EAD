@@ -44,7 +44,7 @@ import retrofit2.Retrofit;
 
 public class BaseNav extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences sharedPreferences;
+    public SharedPreferences sharedPreferences;
     BroadcastReceiver broadcastReceiver;
     public AlertDialog.Builder builder;
     public AlertDialog alertDialog;
@@ -170,7 +170,7 @@ public class BaseNav extends AppCompatActivity implements NavigationView.OnNavig
             String title = extras.getString("title");
             String message = extras.getString("message");
             final NotificationDetails notificationDetails = gson.fromJson(extras.getString("notificationDetails"), NotificationDetails.class);
-            if ("announcement".equalsIgnoreCase(title) || "New Message".equalsIgnoreCase(title)) {
+            if ("announcement".equalsIgnoreCase(title) || "New Message".equalsIgnoreCase(title) || "Interest".equalsIgnoreCase(title)) {
             } else if (!"panic".equalsIgnoreCase(title) && userObj.getProfession() == null) {
                 final View customLayout = getLayoutInflater().inflate(R.layout.notification_dialog, null);
                 builder.setTitle(title).setView(customLayout);

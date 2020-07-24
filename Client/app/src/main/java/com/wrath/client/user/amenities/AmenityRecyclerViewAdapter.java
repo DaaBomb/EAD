@@ -19,10 +19,12 @@ public class AmenityRecyclerViewAdapter extends RecyclerView.Adapter<AmenityRecy
     private final int VIEW_TYPE_LOADING = 1;
     public List<String> amenityList;
     public OnAmenityClickListener mOnAmenityClickListener;
+    boolean isReadOnly;
 
-    public AmenityRecyclerViewAdapter(List<String> amenities, OnAmenityClickListener onAmenityClickListener) {
+    public AmenityRecyclerViewAdapter(List<String> amenities, OnAmenityClickListener onAmenityClickListener, boolean isReadOnly) {
         amenityList = amenities;
         this.mOnAmenityClickListener = onAmenityClickListener;
+        this.isReadOnly = isReadOnly;
     }
 
     @NonNull
@@ -103,7 +105,10 @@ public class AmenityRecyclerViewAdapter extends RecyclerView.Adapter<AmenityRecy
         public ViewHolder(@NonNull View itemView, OnAmenityClickListener onAmenityClickListener) {
             super(itemView);
             this.onAmenityClickListener = onAmenityClickListener;
-            itemView.findViewById(R.id.button6).setOnClickListener(this);
+            if(!isReadOnly)
+                itemView.findViewById(R.id.button6).setOnClickListener(this);
+            else
+                itemView.findViewById(R.id.button6).setVisibility(View.INVISIBLE);
         }
 
         @Override
