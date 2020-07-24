@@ -111,4 +111,15 @@ public interface IMyService {
 
     @POST("api/chat")
     Observable<String> sendMessage(@Body RequestBody request);
+
+    @POST("api/sports/")
+    Observable<String> addSport(@Body RequestBody request);
+
+    @GET("api/sports/getSports/")
+    Observable<String> getSports(@Query("society_id") String society_id,@Query("flag") int flag);
+
+    @POST("api/sports/register/")
+    Observable<String> registerForSport(@Body RequestBody request);
+
+
 }

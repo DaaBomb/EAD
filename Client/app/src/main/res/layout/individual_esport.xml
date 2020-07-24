@@ -132,6 +132,8 @@
             android:text="Room iD, Lobby link etc"
             android:textColor="@color/colorSecondary"
             android:textSize="16dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/competitonDetails"
             tools:layout_editor_absoluteX="32dp" />
 
