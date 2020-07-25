@@ -11,20 +11,20 @@ public class Concierge {
     private String time_needed;
     private String latitude;
     private String longitude;
-    private boolean responded;
-    private boolean approved;
+    private Boolean responded;
+    private Boolean approved;
     private String blockname;
     private String flatnum;
     private String society_id;
     private String _id;
-    private boolean resident_responded;
-    private boolean done;
+    private Boolean resident_responded;
+    private Boolean done;
     private List<Comment> comments;
 
     public Concierge() {
     }
 
-    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, boolean responded, boolean approved, String blockname, String flatnum, String society_id, String _id, boolean resident_responded, boolean done, List<Comment> comments) {
+    public Concierge(String requirement, String details, User user, Date date_needed, String time_needed, String latitude, String longitude, Boolean responded, Boolean approved, String blockname, String flatnum, String society_id, String _id, Boolean resident_responded, Boolean done, List<Comment> comments) {
         this.requirement = requirement;
         this.details = details;
         this.user = user;
@@ -99,19 +99,19 @@ public class Concierge {
         this.longitude = longitude;
     }
 
-    public boolean isResponded() {
+    public Boolean isResponded() {
         return responded;
     }
 
-    public void setResponded(boolean responded) {
+    public void setResponded(Boolean responded) {
         this.responded = responded;
     }
 
-    public boolean isApproved() {
+    public Boolean isApproved() {
         return approved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(Boolean approved) {
         this.approved = approved;
     }
 
@@ -147,19 +147,19 @@ public class Concierge {
         this._id = _id;
     }
 
-    public boolean isResident_responded() {
+    public Boolean isResident_responded() {
         return resident_responded;
     }
 
-    public void setResident_responded(boolean resident_responded) {
+    public void setResident_responded(Boolean resident_responded) {
         this.resident_responded = resident_responded;
     }
 
-    public boolean isDone() {
+    public Boolean isDone(){
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(Boolean done) {
         this.done = done;
     }
 
