@@ -112,7 +112,15 @@ public class SportsRecyclerViewAdapter extends RecyclerView.Adapter<SportsRecycl
         viewHolder.organiser.setText(item.getCreated_by().getName() + " (" + item.getCreated_by().getAddress().getBlockname() + " - " + item.getCreated_by().getAddress().getFlatnum() + ")");
         String freeSlots = "" + (item.getNumberOfPlayers() - item.getParticipants().size());
         viewHolder.remainingSlots.setText(freeSlots);
-        viewHolder.time.setText(item.getTime());
+        String[] arr = item.getTime().split(":");
+        String event_time="";
+        if(arr.length>0 ){
+            if(Integer.parseInt(arr[0])>12)
+                event_time=item.getTime() +" PM";
+            else
+                event_time=item.getTime() +" AM";
+        }
+        viewHolder.time.setText(event_time);
         viewHolder.roomId.setText(item.getDescription());
         String pattern = "EEE, d MMM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
