@@ -105,6 +105,7 @@ public class AmenityRecyclerViewAdapter extends RecyclerView.Adapter<AmenityRecy
         public ViewHolder(@NonNull View itemView, OnAmenityClickListener onAmenityClickListener) {
             super(itemView);
             this.onAmenityClickListener = onAmenityClickListener;
+            itemView.findViewById(R.id.textView18).setVisibility(View.INVISIBLE);
             if(!isReadOnly)
                 itemView.findViewById(R.id.button6).setOnClickListener(this);
             else
