@@ -55,11 +55,11 @@
 
                 <TextView
                     android:id="@+id/textView36"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="235dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/karla"
-                    android:text="Dummy dummy dummy"
+                    android:text="Here you have announcements made by the manager."
                     android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"

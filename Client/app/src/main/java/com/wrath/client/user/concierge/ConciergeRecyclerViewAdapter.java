@@ -102,7 +102,15 @@ public class ConciergeRecyclerViewAdapter extends RecyclerView.Adapter<Concierge
         viewHolder.flatNumber.setText(item.getBlockname() + " - " + item.getFlatnum());
         viewHolder.requirement.setText(item.getRequirement());
         viewHolder.details.setText(item.getDetails());
-        viewHolder.time.setText(item.getTime_needed());
+        String[] arr = item.getTime_needed().split(":");
+        String event_time="";
+        if(arr.length>0 ){
+            if(Integer.parseInt(arr[0])>12)
+                event_time=item.getTime_needed() +" PM";
+            else
+                event_time=item.getTime_needed() +" AM";
+        }
+        viewHolder.time.setText(event_time);
         String status;
         if (item.isResponded()) {
             if (item.isResident_responded()) {
