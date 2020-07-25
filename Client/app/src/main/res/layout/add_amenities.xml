@@ -36,20 +36,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="284dp"
+                android:layout_marginEnd="348dp"
+                android:layout_marginRight="348dp"
+                android:alpha="0.5"
+                android:src="@drawable/hex1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="72dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:alpha="0.3"
+                android:rotation="45"
+                android:src="@drawable/hex1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginLeft="36dp"
-                android:layout_marginTop="28dp"
-                android:textColor="@color/myTextColor"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/karla"
                 android:text="Dummmy Dummy Dummy Dimmy Content"
+                android:textColor="@color/myTextColor"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
 
             <TextView
                 android:id="@+id/textView14"
@@ -87,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginLeft="36dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:hint="Enter competition name"
                 android:textColor="@color/myTextColor"
                 android:textSize="16dp"

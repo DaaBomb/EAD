@@ -12,8 +12,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/appCompatImageView"
-        android:layout_width="411dp"
-        android:layout_height="199dp"
+        android:layout_width="449dp"
+        android:layout_height="148dp"
         android:src="@drawable/swarmtop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,17 +35,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appCompatImageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.109" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edt_email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/karla"
         android:hint="Email"
-        android:paddingBottom="10dp"
         android:inputType="textEmailAddress"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:met_baseColor="@color/myTextColor"
@@ -121,12 +123,12 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/appCompatImageView3"
-        android:layout_width="411dp"
-        android:layout_height="199dp"
+        android:layout_width="430dp"
+        android:layout_height="143dp"
         android:src="@drawable/swarmbot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
         app:layout_constraintVertical_bias="1.0" />

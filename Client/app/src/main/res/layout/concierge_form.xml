@@ -20,6 +20,29 @@
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="724dp"
+                android:layout_marginEnd="336dp"
+                android:layout_marginRight="336dp"
+                android:alpha="0.2"
+                android:src="@drawable/hex1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="356dp"
+                android:layout_marginLeft="356dp"
+                android:layout_marginTop="228dp"
+                android:alpha="0.5"
+                android:src="@drawable/hex1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
@@ -41,13 +64,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/karla"
                 android:text="Dummy dummy dummy"
                 android:textSize="16dp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditText2"
                 android:layout_width="250dp"
@@ -80,10 +103,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginLeft="36dp"
-                android:textColor="@color/myTextColor"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="56dp"
                 android:fontFamily="@font/karla"
                 android:text="Title of the Request"
+                android:textColor="@color/myTextColor"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView36" />
@@ -94,10 +117,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginLeft="36dp"
-                android:layout_marginTop="36dp"
-                android:textColor="@color/myTextColor"
+                android:layout_marginTop="44dp"
                 android:fontFamily="@font/karla"
                 android:text="Add details to your request"
+                android:textColor="@color/myTextColor"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputEditText2" />

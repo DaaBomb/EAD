@@ -22,6 +22,30 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:layout_marginTop="24dp"
+            android:alpha="0.5"
+            android:rotation="45"
+            android:src="@drawable/hex1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="44dp"
+            android:layout_marginTop="24dp"
+            android:alpha="0.7"
+            android:rotation="45"
+            android:src="@drawable/hex1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
