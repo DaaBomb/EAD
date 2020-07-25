@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="2dp"
+    android:backgroundTint="@color/colorPrimary">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="12dp">
+
+
+    <TextView
+        android:id="@+id/event_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/karla"
+        android:text="Request additional details and specifications......Request additional details and specifications......"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        card_view:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="68dp" />
+
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/karla"
+        android:text="9:00PM, 8 Jul, 2020"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/karla"
+        android:text="Name"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/event_details" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
