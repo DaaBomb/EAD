@@ -44,7 +44,15 @@ public class EventStatsPage extends BaseNav implements CompetitionStatsRecyclerV
         recyclerView =(RecyclerView) findViewById(R.id.recyclerView);
         event_title.setText(eventDetails.getName());
         description.setText(eventDetails.getDescription());
-        time.setText(eventDetails.getTime());
+        String[] arr = eventDetails.getTime().split(":");
+        String event_time="";
+        if(arr.length>0 ){
+            if(Integer.parseInt(arr[0])>12)
+                event_time=eventDetails.getTime() +" PM";
+            else
+                event_time=eventDetails.getTime() +" AM";
+        }
+        time.setText(event_time);
         String pattern = "EEE, d MMM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String dateString = simpleDateFormat.format(eventDetails.getStart_date());

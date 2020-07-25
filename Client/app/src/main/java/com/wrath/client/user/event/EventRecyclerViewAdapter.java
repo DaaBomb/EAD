@@ -3,6 +3,7 @@ package com.wrath.client.user.event;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,8 +103,16 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         String date = simpleDateFormat.format(item.getStart_date());
         viewHolder.starting_date.setText(date);
         viewHolder.description.setText(item.getDescription());
-        viewHolder.event_time.setText(item.getTime());
-        viewHolder.number.setText(String.valueOf(item.getAttending().size()));
+        String[] arr = item.getTime().split(":");
+        String time="";
+        if(arr.length>0 ){
+            if(Integer.parseInt(arr[0])>12)
+                time=item.getTime() +" PM";
+            else
+                time=item.getTime() +" AM";
+        }
+        viewHolder.event_time.setText(time);
+        viewHolder.number.setText(String.valueOf(item.getAttending().size())+" attending");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

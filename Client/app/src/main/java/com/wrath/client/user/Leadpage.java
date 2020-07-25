@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -40,7 +41,7 @@ public class Leadpage extends BaseNav {
     Button btn_residentBook;
     Button btn_sports;
     Button btn_amenities;
-
+    TextView username;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,8 @@ public class Leadpage extends BaseNav {
         btn_residentBook = (Button) findViewById(R.id.btn_residents);
         btn_sports = (Button) findViewById(R.id.btn_sports);
         btn_amenities = (Button) findViewById(R.id.btn_amenities);
-
+        username = (TextView) findViewById(R.id.textView26);
+        username.setText(userObj.getName());
         ImageButton panic = findViewById(R.id.panic);
         panic.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
