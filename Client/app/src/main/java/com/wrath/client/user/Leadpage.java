@@ -60,8 +60,8 @@ public class Leadpage extends BaseNav {
         btn_residentBook = (Button) findViewById(R.id.btn_residents);
         btn_sports = (Button) findViewById(R.id.btn_sports);
         btn_amenities = (Button) findViewById(R.id.btn_amenities);
-//        username = (TextView) findViewById(R.id.textView26);
-//        username.setText(userObj.getName());
+        username = (TextView) findViewById(R.id.textView26);
+        username.setText(userObj.getName());
         ImageButton panic = findViewById(R.id.panic);
         panic.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
