@@ -56,7 +56,7 @@ public class ParticipantsListPage extends BaseNav implements ParticipantRecycler
             public boolean onQueryTextChange(String newText) {
                 usersList.clear();
                 for(User participant: participantsList) {
-                    if(participant.getName().contains(newText)) {
+                    if(participant.getName().toLowerCase().contains(newText.toLowerCase())) {
                         usersList.add(participant);
                     }
                 }

@@ -18,6 +18,7 @@ import com.wrath.client.common.BaseNav;
 import com.wrath.client.dto.User;
 import com.wrath.client.dto.UsersResponse;
 import com.wrath.client.user.chat.ChatActivity;
+import com.wrath.client.util.RulesUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +57,7 @@ public class ResidentBookPage extends BaseNav implements ResidentBookRecyclerVie
             public boolean onQueryTextChange(String newText) {
                 usersList.clear();
                 for(User participant: participantsList) {
-                    if(participant.getName().contains(newText)) {
+                    if(participant.getName().toLowerCase().contains(newText.toLowerCase())) {
                         usersList.add(participant);
                     }
                 }
@@ -80,8 +81,12 @@ public class ResidentBookPage extends BaseNav implements ResidentBookRecyclerVie
                     @Override
                     public void onNext(String s) {
                         UsersResponse res = gson.fromJson(s, UsersResponse.class);
-                        usersList.addAll(res.getUsers());
-                        participantsList.addAll(res.getUsers());
+                        for(User user: res.getUsers()) {
+                            if (RulesUtil.isResident(user)) {
+                                usersList.add(user);
+                            }
+                        }
+                        participantsList.addAll(usersList);
                         recyclerViewAdapter.notifyDataSetChanged();
                     }
 
