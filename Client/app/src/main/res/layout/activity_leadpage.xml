@@ -146,7 +146,7 @@
             android:background="@drawable/hexa"
             android:fontFamily="@font/karla"
             android:textStyle="bold"
-            android:text="Gate"
+            android:text="Gate Entry"
             android:textColor="@android:color/white"
             android:textSize="18dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_concierge"
