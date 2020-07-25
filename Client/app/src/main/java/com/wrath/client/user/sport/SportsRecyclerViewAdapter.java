@@ -122,7 +122,7 @@ public class SportsRecyclerViewAdapter extends RecyclerView.Adapter<SportsRecycl
         }
         viewHolder.time.setText(event_time);
         viewHolder.roomId.setText(item.getDescription());
-        String pattern = "EEE, d MMM yyyy";
+        String pattern = "EEE, d MMM yy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(item.getDate_created());
         viewHolder.date.setText(date);

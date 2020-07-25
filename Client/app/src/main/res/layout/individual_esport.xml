@@ -129,7 +129,7 @@
         <TextView
             android:id="@+id/event_details2"
             android:layout_width="320dp"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/karla"
             android:text="Room iD, Lobby link etc"

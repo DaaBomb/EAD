@@ -28,7 +28,7 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
     @Override
     public ChatRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.individual_announcement, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_message, parent, false);
             return new ChatRecyclerViewAdapter.ItemViewHolder(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
@@ -65,12 +65,13 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
 
     private class ItemViewHolder extends ChatRecyclerViewAdapter.ViewHolder {
 
-        TextView message, dateCreated;
+        TextView message, dateCreated, name;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.event_details);
             dateCreated = itemView.findViewById(R.id.event_date);
+            name = itemView.findViewById(R.id.name);
         }
     }
 
@@ -92,6 +93,7 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
     private void populateItemRows(ChatRecyclerViewAdapter.ItemViewHolder viewHolder, int position) {
         ChatMessage item = chatMessages.get(position);
         viewHolder.message.setText(item.getMessage());
+        viewHolder.name.setText(item.getFrom().getName());
         String pattern = "EEE, d MMM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(item.getDate_created());

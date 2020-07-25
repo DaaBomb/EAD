@@ -118,6 +118,7 @@ public class EditProfilePage extends BaseNav implements ProfileRecyclerViewAdapt
                     @Override
                     public void onNext(String s) {
                         UsersResponse res = gson.fromJson(s, UsersResponse.class);
+                        sharedPreferences.edit().clear().apply();
                         sharedPreferences.edit().putString("user",gson.toJson(res.getUser())).apply();
                         Toast.makeText(getBaseContext(), "Profile update successful", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(EditProfilePage.this, ProfilePage.class);
