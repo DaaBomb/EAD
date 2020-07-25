@@ -12,6 +12,7 @@
     <ImageView
         android:layout_width="95dp"
         android:layout_height="95dp"
+        android:visibility="invisible"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -20,6 +21,8 @@
         android:paddingTop="8dp"
         android:fontFamily="@font/karla"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
         android:id="@+id/txt_username"
         android:text="Username (Drawer under development)" />
 
