@@ -7,6 +7,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const { resolve } = require('path');
 const cloudinary = require('cloudinary');
+const firebase = require("firebase-admin");
+const serviceAccount = require('./swarm-7b179-firebase-adminsdk-rhxp1-cd1ee2af5d.json');
+
+
 
 cloudinary.config({
   cloud_name: 'saltandpeppercloud',
@@ -29,6 +33,11 @@ var parser = multer({
 //connect MongoDB
 connectDB();
 
+firebase.initializeApp({
+  credential: firebase.credential.cert(serviceAccount),
+  databaseURL: "https://swarm-7b179.firebaseio.com"
+});
+
 app.get('/', (req, res) => res.send('API running'));
 
 //Middleware for access to req.body
@@ -46,6 +55,10 @@ app.use('/api/society', require('./routes/society'));
 app.use('/api/forums', require('./routes/forums'));
 app.use('/api/gateregister', require('./routes/gateRegister'));
 app.use('/api/programmes', require('./routes/programmes'));
+app.use('/api/concierge', require('./routes/concierge'));
+app.use('/api/announcements', require('./routes/announcements'));
+app.use('/api/chat', require('./routes/chat'));
+app.use('/api/sports', require('./routes/sports'));
 
 app.post('/uploadImages', parser.array('image'), (req, res, next) => {
   // req.files will show you the uploaded files

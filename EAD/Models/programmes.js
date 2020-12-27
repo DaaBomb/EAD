@@ -16,9 +16,9 @@ start_date:{
   default:null,
   required :true,
 },
-end_date:{
-  type:Date,
-  default:null,
+time:{
+  type:String,
+  default:"00:00 AM"
 },
 description:{
   type:String,
@@ -32,10 +32,26 @@ attending:{
 type:Array,
 default:null,
 },
+food_choice:{
+  type:Boolean,
+  default:false
+},
+veg:{
+  type:Array,
+  default:null
+},
+non_veg:{
+  type:Array,
+  default:null
+},
 programmes:[{
   name:{
     type:String,
     default:null,
+  },
+  description:{
+    type:String,
+    default:"No description mentioned"
   },
   participants:{
     type:Array,

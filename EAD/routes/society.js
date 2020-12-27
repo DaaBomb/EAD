@@ -20,6 +20,7 @@ router.post('/addbuilder',async(req, res)=>{
   user.isResident=false
   user.profession="builder"
   user.approved=true
+  user.token=req.body.user.token
   society=new Society({
     name:req.body.name,
     address:req.body.address,
@@ -51,6 +52,7 @@ router.post('/flat',async(req,res)=>{
   user.address.flatnum=req.body.flatnum
   user.isResident=true
   user.approved=true
+  user.token=req.body.user.token
   await user.save()
   let arr = society.block
   if(!arr.find(k => k.name==req.body.blockname)){
@@ -88,6 +90,7 @@ router.post('/staff',async(req,res)=>{
   user.isResident=false
   user.profession=req.body.profession
   user.approved=true
+  user.token=req.body.user.token
   await user.save()
   return res.send({msg:"successful",
             user:user
@@ -130,6 +133,11 @@ router.get('/societies',async(req,res)=>{
 router.get('/socitiesbycity',async(req,res)=>{
   let result= await Society.find({city:req.query.city}).select('name -_id')
   res.send({msg:"successful",societies:result})
+})
+
+router.get('/societybyid',async(req,res)=>{
+  let result = await Society.findById(req.query.society_id).select('name')
+  res.send({msg:"successful",society:result})
 })
 
 

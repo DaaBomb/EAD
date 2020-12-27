@@ -135,4 +135,7 @@ public interface IMyService {
 
     @POST("api/users/userbyid/")
     Observable<String> getUserById(@Body RequestBody request);
+
+    @GET("api/sports/getClass/")
+    Observable<String> getImageClass();
 }

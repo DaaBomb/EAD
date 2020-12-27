@@ -46,6 +46,10 @@ approved:{
   type:Boolean,
   default:false,
 },
+token:{
+  type:String,
+  default:null,
+}
 // profilepic: {
 //     type: String,
 //     required: true,

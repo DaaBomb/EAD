@@ -6,6 +6,10 @@ requirement :{
   type:String,
   default:"No requirement mentioned",
 },
+details:{
+  type:String,
+  default:"No details mentioned",
+},
 blockname:{
   type:String,
   default:null,
@@ -24,12 +28,46 @@ society_id:{
   type:String,
   required:true,
 },
-manager_id:{
-  type:String,
-  default:null,
+date_needed:{
+  type:Date,
+  default:Date.now,
   required:true,
-}
+},
+time_needed:{
+  type:String,
+  default:null
+},
+approved:{
+  type:Boolean,
+  default:false
+},
+responded:{
+  type:Boolean,
+  default:false
+},
+done:{
+  type:Boolean,
+  default:false
+},
+resident_responded:{
+  type:Boolean,
+  default:false
+},
+comments:[{
+  date_created:{
+    type:Date,
+    default:Date.now,
+  },
+  person_name:{
+    type:String,
+    default:null,
+  },
+  comment:{
+    type:String,
+    required:true
+  }
 
+}]
 });
 
 const Concierge= mongoose.model('Concierge',conciergeSchema)

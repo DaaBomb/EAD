@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("swarm", MODE_PRIVATE);
         user = gson.fromJson(sharedPreferences.getString("user", "{}"), User.class);
 
-        forwardUserToNextActivity(user);
+        Intent i = new Intent(MainActivity.this, MainBtpActivity.class);
+        startActivity(i);
+//        forwardUserToNextActivity(user);
 
         edt_Login_email = (MaterialEditText) findViewById(R.id.edt_email);
         edt_Login_password = (MaterialEditText) findViewById(R.id.edt_password);

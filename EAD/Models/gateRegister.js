@@ -24,6 +24,14 @@ confirmed:{
   type:Boolean,
   default:false,
 },
+responded:{
+  type:Boolean,
+  default:false,
+},
+purpose:{
+  type:String,
+  default:"No purpose mentioned"
+},
 date_created:{
   type:Date,
   default:Date.now,

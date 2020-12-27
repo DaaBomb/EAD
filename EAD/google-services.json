@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "858523888408",
+    "firebase_url": "https://swarm-7b179.firebaseio.com",
+    "project_id": "swarm-7b179",
+    "storage_bucket": "swarm-7b179.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858523888408:android:3fdf022b0fe5af48eecc6d",
+        "android_client_info": {
+          "package_name": "com.wrath.client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858523888408-u60iusrc9j8t9nfavsqnhk30ramht3kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDiOt99LzoBkXVtv7p0d_xzspFsNobWK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858523888408-u60iusrc9j8t9nfavsqnhk30ramht3kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,17 +4,21 @@
     package="com.wrath.client">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/bee"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".user.profile.ProfilePage"></activity>
+        <activity android:name=".MainBtpActivity"></activity>
+        <activity android:name=".user.profile.ProfilePage" />
         <activity android:name=".user.event.CompetitionStatsRecyclerViewAdapter" />
         <activity android:name=".user.event.EventStatsPage" />
         <activity android:name=".user.event.CompetitonRecyclerViewAdapter" />
@@ -48,7 +52,7 @@
         <activity android:name=".register.SelectCommunity" />
         <activity android:name=".security.SecurityPage" />
         <activity android:name=".user.event.EventsPage" />
-        <activity android:name=".user.concierge.ConciergeRequestForm"/>
+        <activity android:name=".user.concierge.ConciergeRequestForm" />
         <activity android:name=".user.concierge.ConciergeRequestsPage" />
         <activity android:name=".user.announcement.AnnouncementsPage" />
         <activity android:name=".user.announcement.AnnouncementForm" />

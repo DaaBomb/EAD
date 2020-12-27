@@ -12,6 +12,8 @@ const uuidv1=require('uuid/v1');
 const sendEmail = require('./email.send')
 const msgs = require('./email.msgs')
 const templates = require('./email.templates')
+const firebase = require("firebase-admin");
+const serviceAccount = require('../swarm-7b179-firebase-adminsdk-rhxp1-cd1ee2af5d.json');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -107,35 +109,24 @@ router.get('/all',async(req,res)=>{
 // })
 
 router.post('/updateprofile',async(req, res)=>{
-  const about = req.body.about
-  const contact = req.body.contact
+  const name = req.body.name
   const email = req.body.email
-  const address = req.body.address
-  console.log('...................................................................')
-  console.log(req.body.contact)
-  User.findOne({ _id: req.body.id }, function (err, doc){
-    console.log(doc)
-    // if(doc != null){
-    if(about){
-      doc.about = about;
-    }
-    if(contact){
-      doc.contact = contact;
+  User.findOne({ _id: req.body._id }, function (err, doc){
+
+    if(name){
+      doc.name = contact;
     }
     if(email){
       doc.email = email;
     }
-    if(address){
-      doc.address = address;
+    doc.save();
+    userDetails={
+      msg:"successful",
+      user:doc
     }
 
-
-
-    doc.save();
-  // }
+    res.send(userDetails)
   });
-
-res.send('Updated')
 })
 
 
@@ -277,5 +268,57 @@ router.get('/:id',async(req,res)=>{
   await user.save()
   return res.send("verified. You can now login")
 });
+
+router.post('/addtoken',async(req,res)=>{
+  const {error} = validateToken(req.body);
+  if(error) return res.send({msg:error.details[0].message});
+
+  let user = await User.findById(req.body.user_id)
+  if(!user) return res.send({msg:"User does not exist"})
+
+  user.token=req.body.token
+  await user.save()
+  return res.send({msg:"successful",user:user})
+})
+
+router.post('/usersinsameflat',async(req,res)=>{
+  let users = await User.find({'address.society_id':req.body.society_id,'address.blockname':req.body.blockname,'address.flatnum':req.body.flatnum})
+  return res.send({msg:"successful",users:users})
+})
+
+
+router.post('/panic',async(req,res)=>{
+  var topic = 'security';
+  var message = {
+    data: {
+      title:"panic",
+      message:JSON.stringify(req.body)
+    },
+    topic:topic
+  };
+  firebase.messaging().send(message)
+    .then((response) => {
+      // Response is a message ID string.
+      console.log('Successfully sent message:', response);
+    })
+    .catch((error) => {
+      console.log('Error sending message:', error);
+    });
+    res.send({msg:"successful"})
+})
+//gj
+router.post('/usersBySociety',async(req,res)=>{
+ let users = await User.find({'address.society_id':req.body.society_id});
+ res.send({msg:"successful",users:users});
+})
+
+
+function validateToken(req){
+  const schema={
+    user_id:Joi.string().required(),
+    token:Joi.string().required(),
+  };
+  return Joi.validate(req ,schema)
+}
 
 module.exports = router;
